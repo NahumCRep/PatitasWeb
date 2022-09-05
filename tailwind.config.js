@@ -1,0 +1,41 @@
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./src/**/*.{js,jsx}",
+  ],
+  theme: {
+    extend: {
+      fontFamily:{
+        'primary': ['DynaPuff', 'cursive'],
+        'secondary': ['Sen','sans-serif'],
+      },
+      colors: {
+        'plt-blue': '#185ADB',
+        'plt-cream': '#FFC947',
+        'plt-dark': '#0A1931',
+        'plt-white': '#EFEFEF',
+        'plt-darkcream': '#EEBB3F',
+      },
+      backgroundImage:{
+        'blue-paws': "url('assets/icons/paws-blue.svg')",
+        'cream-paws': "url('assets/icons/paws-cream.svg')",
+      },
+      transitionProperty: {
+        'width': 'width',
+        'height': 'height',
+      },
+      dropShadow: {
+        '3xl': '1px 1px 1px rgba(0,0,0,0.50)',
+        'layers': ['1px 1px 0 #808B96',
+        '1px 2px 0 #D0D3D4']
+      },
+      outlineWidth:{
+        '50': '50px'
+      },
+      outlineOffset:{
+        '30': '30px' 
+      }
+    },
+  },
+  plugins: [],
+}
