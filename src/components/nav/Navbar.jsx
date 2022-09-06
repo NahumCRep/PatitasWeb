@@ -23,7 +23,7 @@ export const Navbar = () => {
   }
 
   return (
-    <nav className='w-full h-[80px] md:h-[60px] flex items-center px-4 fixed z-50 bg-white md:justify-between md:px-20'>
+    <nav className='w-full h-[80px] shadow-xl flex items-center px-4 fixed z-50 bg-white md:h-[60px] md:justify-between md:px-20'>
       {/* Logo */}
       <NavLink
         to={'/'}
