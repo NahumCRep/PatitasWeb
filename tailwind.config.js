@@ -15,6 +15,8 @@ module.exports = {
         'plt-dark': '#0A1931',
         'plt-white': '#EFEFEF',
         'plt-darkcream': '#EEBB3F',
+        'plt-darkblue': '#003FBB',
+        'plt-darkercream': '#DFA519',
       },
       backgroundImage:{
         'blue-paws': "url('assets/icons/paws-blue.svg')",
