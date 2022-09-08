@@ -13,7 +13,7 @@ export const HomePage = () => {
   return (
     <Layout>
       <header className="relative w-full h-[80vh] bg-plt-cream flex flex-col items-center justify-between overflow-hidden md:h-[calc(100vh-80px)]">
-        <div className="flex flex-col items-center gap-5 z-20 md:gap-7">
+        <div className="flex flex-col items-center gap-5 z-20 md:gap-7 md:mt-4">
           <h1 className="w-full font-primary text-plt-dark text-6xl flex flex-col items-center mt-8 md:text-8xl md:gap-5 md:flex-row">
             <span>Perros</span>
             <span>y</span>

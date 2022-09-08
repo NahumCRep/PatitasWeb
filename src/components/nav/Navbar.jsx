@@ -61,7 +61,7 @@ export const Navbar = () => {
           </li>
 
           <NavLi title={'Nosotros'} url={"/about"} />
-          <NavLi title={'Login'} url={"/signin"} />
+          <NavLi title={'Login'} url={"/login"} />
         </ul>
       </div>
 
