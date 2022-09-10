@@ -55,8 +55,8 @@ export const Navbar = () => {
 
               <ul className={`w-full transition-height duration-700 ${isAdoptOpen ? 'h-32':'h-0'} overflow-hidden 
                               md:absolute md:top-[70px] md:bg-white md:text-plt-dark md:shadow-2xl md:scale-100`}>
-                  <NavSubLi title={'Perros disponibles'} url={'/'} sublink />
-                  <NavSubLi title={'Gatos disponibles'} url={'/'} sublink />
+                  <NavSubLi title={'Perros disponibles'} url={'/perros'} sublink />
+                  <NavSubLi title={'Gatos disponibles'} url={'/gatos'} sublink />
               </ul>
           </li>
 
