@@ -1,7 +1,7 @@
 import React from 'react';
 // ** Components
 import { Link } from 'react-router-dom';
-import { Layout } from '../components/Layout';
+import { Layout } from '../components/layouts';
 import { Counter } from '../components/home/Counter';
 import { PawsContainer } from '../components/home/PawsContainer';
 // ** Images
@@ -58,7 +58,8 @@ export const HomePage = () => {
         <div className="
               w-full flex flex-col justify-center gap-4 relative 
               before:content-[''] before:absolute before:z-0 before:w-64 before:aspect-square before:rounded-full before:border-[10px] before:border-dashed before:border-plt-cream before:opacity-30
-              lg:w-1/2 md:before:opacity-50">
+              lg:w-1/2 md:before:opacity-50"
+        >
           <h2 className="font-primary text-plt-darkcream text-4xl md:text-6xl drop-shadow-sm">
             Adopta !!
           </h2>

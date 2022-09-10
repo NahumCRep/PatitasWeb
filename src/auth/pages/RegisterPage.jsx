@@ -2,7 +2,7 @@ import React from 'react'
 // ** Components
 import { Link } from 'react-router-dom';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import { AuthLayout } from '../../components/auth/AuthLayout';
+import { AuthLayout } from '../../components/layouts';
 
 export const RegisterPage = () => {
   return (
@@ -57,29 +57,29 @@ export const RegisterPage = () => {
             }, 400);
           }}
         >
-          {({ isSubmitting }) => (
+          {({ errors, touched, isSubmitting }) => (
             <Form className="text-plt-dark mt-6 overflow-x-hidden pb-9 flex flex-col gap-2">
               <div className="h-24">
                 <label htmlFor="name" className="block text-lg  text-gray-600">nombre</label>
-                <Field type="name" name="name" className={`w-full mt-1 p-2 border-2 border-plt-cream`} />
+                <Field type="name" name="name" className={`w-full mt-1 p-2 border-2 ${touched.name && errors.name ? 'border-red-500':'border-plt-cream'}`} />
                 <ErrorMessage name="name" component="div" className="text-red-500 text-sm" />
               </div>
 
               <div className="h-24">
                 <label htmlFor="email" className="block text-lg text-gray-600">correo</label>
-                <Field type="email" name="email" className={`w-full mt-1 p-2 border-2 border-plt-cream`} />
+                <Field type="email" name="email" className={`w-full mt-1 p-2 border-2 ${touched.email && errors.email ? 'border-red-500':'border-plt-cream'}`} />
                 <ErrorMessage name="email" component="div" className="text-red-500 text-sm" />
               </div>
 
               <div className="h-24">
                 <label htmlFor="password" className="block text-lg text-gray-600">contraseña</label>
-                <Field type="password" name="password" className={`w-full mt-1 p-2 border-2 border-plt-cream`} />
+                <Field type="password" name="password" className={`w-full mt-1 p-2 border-2 ${touched.password && errors.password ? 'border-red-500':'border-plt-cream'}`} />
                 <ErrorMessage name="password" component="div" className="text-red-500 text-sm" />
               </div>
 
               <div className="h-24">
                 <label htmlFor="confirmPassword" className="block text-lg text-gray-600">confirmar contraseña</label>
-                <Field type="password" name="confirmPassword" className={`w-full mt-1 p-2 border-2 border-plt-cream`} />
+                <Field type="password" name="confirmPassword" className={`w-full mt-1 p-2 border-2 ${touched.confirmPassword && errors.confirmPassword ? 'border-red-500':'border-plt-cream'}`} />
                 <ErrorMessage name="confirmPassword" component="div" className="text-red-500 text-sm" />
               </div>
 
