@@ -13,9 +13,9 @@ export const AppRoutes = () => {
     return (
         <Routes>
             <Route path='/' element={<HomePage />} />
-            <Route path='/perros' element={<DogsRoutes />} />
-            <Route path='/gatos' element={<CatsRoutes />} />
-            <Route path='/about' element={<AboutPage />} />
+            <Route path='perros/*' element={<DogsRoutes />} />
+            <Route path='gatos/*' element={<CatsRoutes />} />
+            <Route path='about' element={<AboutPage />} />
             
             {
                 isLogged === 'authenticated'

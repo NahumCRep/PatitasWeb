@@ -6,9 +6,9 @@ export const DogsRoutes = () => {
   return (
     <Routes>
         <Route path='/' element={<AvailableDogsPage />} />
-        <Route path='/page/:id' element={<AvailableDogsPage />} />
+        <Route path='/page/:page' element={<AvailableDogsPage />} />
         <Route path='/:province' element={<AvailableDogsPage />} />
-        <Route path='/:province/page/:id' element={<AvailableDogsPage />} />
+        <Route path='/:province/page/:page' element={<AvailableDogsPage />} />
     </Routes>
   )
 }
