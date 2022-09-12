@@ -76,8 +76,8 @@ export const HomePage = () => {
 
 
       <section className="w-full h-auto mt-16 flex flex-col lg:flex-row">
-        <PawsContainer paw={'dog'} btnText="Perros" url={'/'} />
-        <PawsContainer paw={'cat'} btnText="Gatos" url={'/'} />
+        <PawsContainer paw={'dog'} btnText="Perros" url={'/perros'} />
+        <PawsContainer paw={'cat'} btnText="Gatos" url={'/gatos'} />
       </section>
 
       <section className="w-full min-h-[550px] h-auto relative mt-16 px-4 overflow-hidden md:px-20">
