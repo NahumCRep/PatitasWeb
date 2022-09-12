@@ -1,6 +1,8 @@
+import { useScrollToTop } from '../../hooks';
 import { Navbar } from '../nav/Navbar';
 
 export const Layout = ({ children }) => {
+    useScrollToTop();
     return (
         <main>
             <Navbar />
