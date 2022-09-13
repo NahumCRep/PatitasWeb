@@ -30,9 +30,9 @@ export const PetCard = ({pet}) => {
             </p>
 
             <div className="font-medium text-[0.7rem] text-slate-400">
-              <p>{pet.age}</p>
-              <p>{pet.breed}</p>
-              <p>{pet.location}</p>
+              <p className="w-full text-ellipsis">{pet.age}</p>
+              <p className="w-full text-ellipsis">{pet.breed}</p>
+              <p className="w-full text-ellipsis truncate">{pet.location}</p>
             </div>
 
         </div>
