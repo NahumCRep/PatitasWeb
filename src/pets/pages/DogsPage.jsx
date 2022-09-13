@@ -20,6 +20,7 @@ export const DogsPage = () => {
 
   return (
     <PetsLayout pet={'dog'} baseLinkPath={'perros'} tlwColor={'plt-blue'}>
+      
       <div className="w-full h-16 px-5 flex items-center gap-4">
         <div className="w-11 aspect-square text-white flex items-center justify-center bg-plt-blue">
           <FaDog size={35} /> 
@@ -28,6 +29,7 @@ export const DogsPage = () => {
           perros { province && `/  ${province.replaceAll('-', ' ')}`}
         </p>
       </div>
+
       <PetGrid>
         {pets.map((pet) => (
               <PetCard key={pet.id} pet={pet} />
