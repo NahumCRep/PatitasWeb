@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
-import { CatsPage } from '../pages/CatsPage';
+import { CatsPage, DescriptionPage } from '../pages';
 
 export const CatsRoutes = () => {
   return (
@@ -9,6 +9,7 @@ export const CatsRoutes = () => {
         <Route path='/page/:page' element={<CatsPage />} />
         <Route path='/:province' element={<CatsPage />} />
         <Route path='/:province/page/:page' element={<CatsPage />} />
+        <Route path='/description/:id' element={<DescriptionPage />} />
     </Routes>
   )
 }

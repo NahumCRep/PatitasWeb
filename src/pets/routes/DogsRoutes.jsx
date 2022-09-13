@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { DogsPage } from '../pages/DogsPage';
+import { DogsPage, DescriptionPage } from '../pages';
 
 export const DogsRoutes = () => {
   return (
@@ -9,6 +9,7 @@ export const DogsRoutes = () => {
         <Route path='/page/:page' element={<DogsPage />} />
         <Route path='/:province' element={<DogsPage />} />
         <Route path='/:province/page/:page' element={<DogsPage />} />
+        <Route path='/description/:id' element={<DescriptionPage />} />
     </Routes>
   )
 }
