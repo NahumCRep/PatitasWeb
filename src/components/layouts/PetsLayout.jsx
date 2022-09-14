@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 // ** Hooks
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 // ** Components
 import { Layout } from './Layout'
-import { Link } from 'react-router-dom';
-import { ProvinceBtn } from '../pets';
+import { ProvinceBtn } from '../pets/ProvinceBtn';
 // ** Icons
 import { FaSearchPlus, FaSearchMinus } from 'react-icons/fa';
 // ** Local Data

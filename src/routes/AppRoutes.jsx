@@ -1,15 +1,15 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 // ** Pages
-import { LoginPage, RegisterPage } from '../auth/pages';
-import { AboutPage, HomePage, NotFoundPage } from '../pages';
+import { LoginPage, RegisterPage } from '../pages/auth';
+import { AboutPage, HomePage, NotFoundPage } from '../pages/publicPages';
 // ** Routes
-import { ProfileRoutes } from '../profile/routes';
-import { DogsRoutes, CatsRoutes } from '../pets/routes';
+import { ProfileRoutes } from './profile';
+import { DogsRoutes, CatsRoutes } from './pets';
 
 
 export const AppRoutes = () => {
-    const isLogged = 'not-authenticated'
+    const isLogged = 'authenticated'
     return (
         <Routes>
             <Route path='/' element={<HomePage />} />
