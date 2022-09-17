@@ -21,6 +21,8 @@ module.exports = {
       backgroundImage:{
         'blue-paws': "url('assets/icons/paws-blue.svg')",
         'cream-paws': "url('assets/icons/paws-cream.svg')",
+        'svg-bg': "url('assets/images/backgroundSvg.svg')",
+        'svg-bg-hd': "url('assets/images/headerBgSvg.svg')"
       },
       transitionProperty: {
         'width': 'width',
