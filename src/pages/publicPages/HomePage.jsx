@@ -2,8 +2,7 @@ import React from 'react';
 // ** Components
 import { Link } from 'react-router-dom';
 import { Layout } from '../../components/layouts';
-import { Counter } from '../../components/ui/Counter';
-import { PawsContainer } from '../../components/ui/PawsContainer';
+import { Counter, PawsContainer } from '../../components/ui';
 // ** Images
 import dog from '../../assets/images/dog-head.png';
 import map from '../../assets/images/panama.svg';
