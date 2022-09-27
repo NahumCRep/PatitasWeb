@@ -13,6 +13,7 @@ module.exports = {
         'plt-blue': '#185ADB',
         'plt-cream': '#FFC947',
         'plt-dark': '#0A1931',
+        'plt-lighterDark':'#0F2649',
         'plt-white': '#EFEFEF',
         'plt-darkcream': '#EEBB3F',
         'plt-darkblue': '#003FBB',
