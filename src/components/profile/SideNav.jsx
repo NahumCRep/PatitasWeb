@@ -1,26 +1,71 @@
 import React from 'react';
-import { TbArrowLeftBar } from 'react-icons/tb';
 import { Link } from 'react-router-dom';
+import { SideNavLink } from './SideNavLink';
 import { Logo } from '../ui';
+// ** Icons
+import { TbArrowLeftBar } from 'react-icons/tb';
+import { MdOutlineDashboard, MdLogout } from 'react-icons/md';
+import { BsFillFilePostFill, BsFillGearFill } from 'react-icons/bs';
+import { AiFillHome } from 'react-icons/ai';
 
-export const SideNav = ({navOpen, handleNav}) => {
+export const SideNav = ({ navOpen, handleNav }) => {
     return (
         <div className={`
-            min-h-screen h-auto overflow-hidden fixed top-0 left-0 z-10 bg-plt-blue transition-width duration-700 
-            ${navOpen ? 'w-[70vw]':'w-0'} 
-            md:static md:p-2 md:w-1/5`}>
-            <div className="w-full h-24 flex flex-col items-center justify-center border-b-2 border-slate-300">
-                <div className="font-primary flex items-center gap-2">
-                    <div className="w-12">
-                        <Logo borderColor='#FFFFFF' insideColor='#0A1931' />
+            h-screen overflow-hidden fixed top-0 left-0 z-10 bg-plt-dark transition-width duration-700 
+            ${navOpen ? 'w-[70vw] px-2' : 'w-0'} flex flex-col justify-between pb-4
+            md:px-2 md:w-[18%]`}>
+            <div>
+                <div className="w-full h-32 flex flex-col items-center justify-center">
+                    <div className="bg-white rounded-full">
+                        <div className="w-16">
+                            <Logo borderColor='#FFFFFF' insideColor='#185ADB' />
+                        </div>
                     </div>
-                    Patitas
                 </div>
-                <Link to={'/'} className=" flex items-center text-white">
+
+                <div className="w-full h-12 bg-plt-lighterDark rounded-xl flex justify-center items-center">
+                    <p className="text-white font-secondary font-semibold whitespace-nowrap">Nahum Casco</p>
+                </div>
+
+                {/* <SideNavLink url={'/'}>
                     <TbArrowLeftBar size={20} />
-                    inicio
-                </Link>
+                    volver a inicio
+                </SideNavLink> */}
+
+                <ul className="mt-4">
+                    <li>
+                        <SideNavLink url={'/'}>
+                            <AiFillHome size={20} color="#FFC947" />
+                            Patitas
+                        </SideNavLink>
+                    </li>
+                    <li>
+                        <SideNavLink url={'/'}>
+                            <MdOutlineDashboard size={20} color="#FFC947" />
+                            Panel
+                        </SideNavLink>
+                    </li>
+                    <li >
+                        <SideNavLink url={'/'}>
+                            <BsFillFilePostFill size={20} color="#FFC947" />
+                            Publicaciones
+                        </SideNavLink>
+                    </li>
+                    <li>
+                        <SideNavLink url={'/'}>
+                            <BsFillGearFill size={20} color="#FFC947" />
+                            Configuracion
+                        </SideNavLink>
+                    </li>
+                </ul>
             </div>
+
+            <button className="w-full h-14 rounded-xl flex flex-nowrap items-center gap-2 px-2 font-secondary font-medium
+             text-white text-xl whitespace-nowrap  transition-colors duration-500 hover:bg-plt-darkblue
+             md:h-10 md:text-sm">
+                <MdLogout size={20} color="#FFC947" />
+                Cerrar Sesion
+            </button>
         </div>
     )
 }
