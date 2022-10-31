@@ -39,7 +39,7 @@ export const ProfileLayout = ({ children }) => {
 
           </div>
         </div>
-        <div className="h-[700px]">
+        <div className="h-[700px] p-4 md:p-9">
           {children}
         </div>
       </div>
