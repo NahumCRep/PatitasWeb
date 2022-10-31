@@ -1,4 +1,6 @@
 import React from 'react';
+// ** Hooks
+import { useAuthStore } from '../../hooks';
 // ** Components
 import { Link } from 'react-router-dom';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
@@ -6,6 +8,12 @@ import { AuthLayout } from '../../components/layouts';
 
 
 export const LoginPage = () => {
+  const { startLogin } = useAuthStore();
+  
+  const handleLogin = (data) => {
+    startLogin(data);
+  }
+
   return (
     <AuthLayout tlwBgColor={'bg-plt-blue'}>
       <div className="w-full px-4 font-secondary font-semibold md:px-20">
@@ -41,6 +49,7 @@ export const LoginPage = () => {
               alert(JSON.stringify(values, null, 2));
               setSubmitting(false);
               resetForm();
+              handleLogin(values);
             }, 400);
           }}
         >
