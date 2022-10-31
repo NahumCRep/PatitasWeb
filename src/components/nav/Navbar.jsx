@@ -60,7 +60,7 @@ export const Navbar = () => {
               </ul>
           </li>
 
-          <NavLi title={'Nosotros'} url={"/about"} />
+          <NavLi title={'Nosotros'} url={"/nosotros"} />
           <NavLi title={'Login'} url={"/login"} />
         </ul>
       </div>
