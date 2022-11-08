@@ -3,7 +3,7 @@ import { ProfileLayout } from '../../components/layouts'
 
 export const ProfilePage = () => {
   return (
-    <ProfileLayout>
+    <ProfileLayout layoutTitle={'Panel'}>
       <div>profile page</div>
     </ProfileLayout>
   )
