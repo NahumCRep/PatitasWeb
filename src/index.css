@@ -4,7 +4,12 @@
 @tailwind components;
 @tailwind utilities;
 
-
+@layer components{
+    .formFieldComponent{
+        @apply w-full mt-1 p-1 border-2 text-sm;
+    }
+    
+}
 
 
 
