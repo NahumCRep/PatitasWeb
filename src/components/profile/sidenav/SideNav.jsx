@@ -1,9 +1,9 @@
 import React from 'react';
 // ** Hooks
-import { useAuthStore } from '../../hooks';
+import { useAuthStore } from '../../../hooks';
 // ** Components
 import { SideNavLink } from './SideNavLink';
-import { Logo } from '../ui';
+import { Logo } from '../../ui';
 // ** Icons
 import { MdOutlineDashboard, MdLogout } from 'react-icons/md';
 import { BsFillFilePostFill, BsFillGearFill } from 'react-icons/bs';
