@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 // ** Icons
-import { AiOutlineMenuUnfold, AiOutlineMenuFold } from 'react-icons/ai';
 import { HiOutlineMenuAlt3, HiOutlineX } from 'react-icons/hi';
 // ** Images
 import { SideNav } from '../profile';
