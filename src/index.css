@@ -6,7 +6,11 @@
 
 @layer components{
     .formFieldComponent{
-        @apply w-full mt-1 p-1 border-2 text-sm;
+        @apply w-full mt-1 p-1 border-2 border-slate-300 text-sm;
+    }
+
+    .grayButton{
+        @apply bg-slate-200 text-slate-400 hover:bg-slate-300;
     }
     
 }
