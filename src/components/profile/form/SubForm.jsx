@@ -7,10 +7,10 @@ import { RiWhatsappFill } from 'react-icons/ri'
 
 import { provinces } from '../../../localData/provinces'
 
-const ageWithoutNumberOptions = ['adulto', 'jover', 'bebé', 'recien-nacido'];
+const ageWithoutNumberOptions = ['adulto', 'joven', 'bebé'];
 const ageWithNumberOptions = ['semanas', 'meses', 'años'];
 
-export const SubForm = () => {
+export const SubForm = ({touched, errors}) => {
     const [isSpecificAge, setIsSpecificAge] = useState(false);
 
     const handleToggleAge = (e) => {
@@ -23,7 +23,13 @@ export const SubForm = () => {
     return (
         <>
             {/* Name */}
-            <InputFormField name={'name'} type={"text"} label="Nombre" touched errors />
+            <InputFormField 
+                name={'name'} 
+                type={"text"} 
+                label="Nombre" 
+                touchedField={touched.name} 
+                errorField={errors.name} 
+            />
 
             {/* Age */}
             <div className="h-16">
@@ -51,13 +57,17 @@ export const SubForm = () => {
 
             {/* Breed */}
             <div className="mt-2">
-                <InputFormField name={'breed'} type={'text'} label={'Raza'} touched errors />
+                <InputFormField name={'breed'} type={'text'} label={'Raza'} touchedField={touched.breed} errorField={errors.breed} />
             </div>
             
             {/* Location */}
             <div className="h-16 mt-2">
                 <label htmlFor='location'>Provincia</label>
-                <Field as="select" name="location" className="block cursor-pointer formFieldComponent">
+                <Field 
+                    as="select" 
+                    name="location" 
+                    className="block cursor-pointer formFieldComponent"
+                >
                     <option disabled value="" >seleccionar...</option>
                     {provinces.map(province => (
                         <option value={province.value} key={province.value}>{province.province}</option>
@@ -71,21 +81,17 @@ export const SubForm = () => {
 
                 <div className="grid grid-cols-2 gap-5">
                     <ContactInputField 
-                        name='contact.whatsapp'
+                        name='whatsapp'
                         label='Whatsapp'
                         type='text'
-                        touched
-                        errors
                     >
                         <RiWhatsappFill size={25} color='#25d366' />
                     </ContactInputField>
 
                     <ContactInputField 
-                        name='contact.email'
+                        name='email'
                         label='Correo'
                         type='email'
-                        touched
-                        errors
                         isRequired
                     >
                         <MdEmail size={25} color="#E74C3C" />

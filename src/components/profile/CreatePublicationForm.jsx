@@ -1,25 +1,19 @@
 import React, { useState } from 'react';
-import { Form, Formik } from 'formik';
+import { Field, Form, Formik } from 'formik';
 import { provinces } from '../../localData/provinces';
 
-import { SubForm } from './form';
-import { DefaultImage } from './DefaultImage';
-
+import { SubForm, PetProfilePhoto } from './form';
+import { FaPlus } from 'react-icons/fa';
 
 
 export const CreatePublicationForm = ({ handleSubmit }) => {
-    const [pet, setPet] = useState("dog");
+    const [isDog, setIsDog] = useState(true);
     // const [petImages, setPetImages] = useState([]);
 
-    const handlePetState = () => {
-        pet === 'dog'
-            ? setPet('cat')
-            : setPet('dog')
-    }
+    const handlePetState = () => { setIsDog(!isDog) }
 
     return (
         <Formik
-            enableReinitializea
             initialValues={{
                 name: '',
                 breed: '',
@@ -27,10 +21,8 @@ export const CreatePublicationForm = ({ handleSubmit }) => {
                 ageString: '',
                 location: provinces[0].value,
                 description: '',
-                contact: {
-                    whatsapp: '',
-                    email: ''
-                }
+                whatsapp: '',
+                email: ''
             }}
             validate={values => {
                 const errors = {};
@@ -43,9 +35,10 @@ export const CreatePublicationForm = ({ handleSubmit }) => {
                     errors.ageString = "seleccione un valor"
                 }
 
-                if (!values.contact.email) {
-                    errors.contact.email = "ingrese un correo de contacto"
+                if (!values.email) {
+                    errors.email = "ingrese un correo de contacto"
                 }
+
                 return errors;
             }}
 
@@ -58,47 +51,50 @@ export const CreatePublicationForm = ({ handleSubmit }) => {
             }}
         >
             {({ errors, touched, isSubmitting }) => (
-                <Form className="">
-                    <div className='w-full flex gap-5 mt-5'>
-                        <div className='w-full h-96 md:w-[40%]'>
-                            <figure className='w-full h-[80%]'>
-                                <DefaultImage pet={pet} />
-                            </figure>
-                            <label
-                                htmlFor='petImg'
-                                className="w-full h-12 mt-5 flex items-center justify-center font-secondary
-                                      text-white bg-plt-blue rounded-xl cursor-pointer
-                                        transition-colors duration-200 hover:bg-plt-darkblue"
-                            >
-                                subir imagen
-                            </label>
-                            <input id='petImg' type="file" className='hidden' />
-                        </div>
-
-                        <div className="w-full md:w-[60%] font-secondary">
-                            <h2>Que tipo de mascota es?</h2>
-                            
-                            <div className="flex mt-2">
-                                <button 
-                                    onClick={handlePetState} 
-                                    className={`w-[7rem] py-1 ${pet === 'dog' ? 'bg-plt-blue text-white' : 'bg-slate-200 text-slate-400 hover:bg-slate-300'} `}
-                                >
+                <>
+                <h2>Que tipo de mascota es?</h2>
+                 <button onClick={handlePetState} className={`w-[7rem] py-1 ${isDog ? 'bg-plt-blue text-white' : 'grayButton'}`}>
                                     Perro
                                 </button>
-                                <button 
-                                    onClick={handlePetState} 
-                                    className={`w-[7rem] py-1 ${pet === 'cat' ? 'bg-plt-cream' : 'bg-slate-200 text-slate-400 hover:bg-slate-300'} `}
-                                >
+                                <button onClick={handlePetState} className={`w-[7rem] py-1 ${!isDog ? 'bg-plt-cream' : 'grayButton'} `}>
                                     Gato
                                 </button>
+                <Form className="">
+                    <div className='w-full flex gap-5 mt-5'>
+
+                        <PetProfilePhoto pet={isDog} />
+
+                        <div className="w-full md:w-[60%] font-secondary">
+                            
+
+                            <div className="flex mt-2">
+                               
                             </div>
                             <div className="grid grid-cols-2 gap-5 mt-5">
-                                <SubForm />
+                                <SubForm touched={touched} errors={errors} />
                             </div>
                         </div>
                     </div>
 
-                    
+                    <div className="mt-3">
+                        <label htmlFor='description'>Descripcion</label>
+                        <Field as="textarea" name="description" className="formFieldComponent h-28 resize-none" />
+                    </div>
+
+                    <div className="w-full mt-5">
+                        <div className='flex items-center gap-2'>
+                            Imagenes adicionales
+                            <label htmlFor='extraImgs' className='text-slate-400 bg-slate-200 w-7 h-7 flex items-center justify-center cursor-pointer transition-colors duration-200 hover:bg-slate-300'>
+                                <FaPlus size={15} />
+                            </label>
+                            <input type="file" id="extraImgs" className='hidden' />
+                        </div>
+                        <hr className='mt-2' />
+                        <div className='mt-3'>
+                            <div className='w-40 h-40 bg-slate-400'></div>
+                        </div>
+                    </div>
+
                     <button
                         type="submit"
                         disabled={isSubmitting}
@@ -107,6 +103,7 @@ export const CreatePublicationForm = ({ handleSubmit }) => {
                         aceptar
                     </button>
                 </Form>
+                </>
             )}
         </Formik>
     )
