@@ -10,7 +10,7 @@ import { provinces } from '../../../localData/provinces'
 const ageWithoutNumberOptions = ['adulto', 'joven', 'bebé'];
 const ageWithNumberOptions = ['semanas', 'meses', 'años'];
 
-export const SubForm = ({touched, errors}) => {
+export const SubForm = ({ touched, errors }) => {
     const [isSpecificAge, setIsSpecificAge] = useState(false);
 
     const handleToggleAge = (e) => {
@@ -21,14 +21,14 @@ export const SubForm = ({touched, errors}) => {
     }
 
     return (
-        <>
+        <div className="flex flex-col gap-5 md:grid md:grid-cols-2 ">
             {/* Name */}
-            <InputFormField 
-                name={'name'} 
-                type={"text"} 
-                label="Nombre" 
-                touchedField={touched.name} 
-                errorField={errors.name} 
+            <InputFormField
+                name={'name'}
+                type={"text"}
+                label="Nombre"
+                touchedField={touched.name}
+                errorField={errors.name}
             />
 
             {/* Age */}
@@ -59,13 +59,13 @@ export const SubForm = ({touched, errors}) => {
             <div className="mt-2">
                 <InputFormField name={'breed'} type={'text'} label={'Raza'} touchedField={touched.breed} errorField={errors.breed} />
             </div>
-            
+
             {/* Location */}
             <div className="h-16 mt-2">
                 <label htmlFor='location'>Provincia</label>
-                <Field 
-                    as="select" 
-                    name="location" 
+                <Field
+                    as="select"
+                    name="location"
                     className="block cursor-pointer formFieldComponent"
                 >
                     <option disabled value="" >seleccionar...</option>
@@ -79,16 +79,8 @@ export const SubForm = ({touched, errors}) => {
             <div className="col-span-2 mt-3">
                 <p>Medios de Contacto</p>
 
-                <div className="grid grid-cols-2 gap-5">
-                    <ContactInputField 
-                        name='whatsapp'
-                        label='Whatsapp'
-                        type='text'
-                    >
-                        <RiWhatsappFill size={25} color='#25d366' />
-                    </ContactInputField>
-
-                    <ContactInputField 
+                <div className="flex flex-col gap-5 md:grid md:grid-cols-2">
+                    <ContactInputField
                         name='email'
                         label='Correo'
                         type='email'
@@ -96,8 +88,16 @@ export const SubForm = ({touched, errors}) => {
                     >
                         <MdEmail size={25} color="#E74C3C" />
                     </ContactInputField>
+
+                    <ContactInputField
+                        name='whatsapp'
+                        label='Whatsapp'
+                        type='text'
+                    >
+                        <RiWhatsappFill size={25} color='#25d366' />
+                    </ContactInputField>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
