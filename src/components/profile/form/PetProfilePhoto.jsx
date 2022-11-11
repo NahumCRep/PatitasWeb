@@ -5,7 +5,7 @@ import catDefaultImage from '../../../assets/images/catDefaultImg.jpg';
 
 export const PetProfilePhoto = ({pet}) => {
   return (
-    <div className='w-full h-96 md:w-[40%]'>
+    <div className='w-full h-80 md:w-[40%] pr-5'>
       <figure className='w-full h-[80%]'>
         <img 
             src={pet ? dogDefaultImage : catDefaultImage} 
@@ -16,7 +16,7 @@ export const PetProfilePhoto = ({pet}) => {
 
       <label
         htmlFor='petImg'
-        className="w-full h-12 mt-5 flex items-center justify-center font-secondary text-white bg-plt-blue rounded-xl cursor-pointer
+        className="w-full h-10 mt-5 flex items-center justify-center font-secondary text-white bg-plt-blue rounded-xl cursor-pointer
           transition-colors duration-200 hover:bg-plt-darkblue"
       >
         subir imagen
