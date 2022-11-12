@@ -38,7 +38,8 @@ export const PetsLayout = ({ pet, baseLinkPath, tlwColor, children }) => {
         </button>
         <div className={`absolute top-16 w-full overflow-hidden z-20 bg-plt-dark transition-height duration-700
                         ${isOptionsOpen ? 'h-screen' : 'h-0'} 
-                        md:relative md:top-0 md:w-1/4 md:h-auto md:bg-white`}>
+                        md:relative md:top-0 md:w-[30%] md:h-auto md:bg-white`}
+        >
           <div className={`w-full pl-7 pr-4 h-16 flex items-center justify-between border-b-2 border-b-${tlwColor} text-white
                         md:px-3 md:text-plt-dark md:border-slate-200`}
           >
