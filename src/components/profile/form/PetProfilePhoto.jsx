@@ -5,7 +5,7 @@ import catDefaultImage from '../../../assets/images/catDefaultImg.jpg';
 
 export const PetProfilePhoto = ({pet}) => {
   return (
-    <div className='w-full h-80 md:w-[40%] pr-5'>
+    <div className='w-full h-80 md:w-[40%] md:pr-5'>
       <figure className='w-full h-[80%]'>
         <img 
             src={pet ? dogDefaultImage : catDefaultImage} 
