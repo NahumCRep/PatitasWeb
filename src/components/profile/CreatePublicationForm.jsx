@@ -5,9 +5,12 @@ import { provinces } from '../../localData/provinces';
 import { SubForm, PetProfilePhoto } from './form';
 import { FaPlus } from 'react-icons/fa';
 
+import { usePetStore } from '../../hooks';
 
-export const CreatePublicationForm = ({ handleSubmit }) => {
+
+export const CreatePublicationForm = ({ handleSubmit, onSetPetImage }) => {
     const [isDog, setIsDog] = useState(true);
+    const {image, startClearPreviewImage, startUploadingPetImage} = usePetStore();
     // const [petImages, setPetImages] = useState([]);
 
     const handlePetState = () => { setIsDog(!isDog) }
@@ -44,7 +47,9 @@ export const CreatePublicationForm = ({ handleSubmit }) => {
 
             onSubmit={(values, { setSubmitting, resetForm }) => {
                 setTimeout(() => {
-                    alert(JSON.stringify(values, null, 2));
+                    // alert(JSON.stringify(values, null, 2));
+                    startUploadingPetImage(image)
+                    startClearPreviewImage();
                     setSubmitting(false);
                     resetForm();
                 }, 400);
