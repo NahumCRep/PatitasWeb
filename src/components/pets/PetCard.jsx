@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 // ** Icons
 import { TbGenderMale, TbGenderFemale } from 'react-icons/tb';
 import {AiOutlineHeart, AiFillHeart} from 'react-icons/ai';
-import { BsBookmarkHeartFill } from 'react-icons/bs';
-import dogcard from '../../assets/images/dogcard.jpg'
+import { MdLocationOn } from 'react-icons/md';
+import dogcard from '../../assets/images/dogcard.jpg';
 
 
 export const PetCard = ({ pet }) => {
@@ -27,7 +27,8 @@ export const PetCard = ({ pet }) => {
                 : <TbGenderFemale color='#E848F3' />
             }
           </p>
-          <p className="w-full font-medium text-[0.8rem] text-slate-400 text-ellipsis truncate">
+          <p className="w-full font-medium text-[0.8rem] text-slate-400 text-ellipsis truncate flex items-center">
+            <MdLocationOn />
             {pet.location}
           </p>
         </div>
