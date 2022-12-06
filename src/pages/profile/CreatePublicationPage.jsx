@@ -1,14 +1,11 @@
-import React, { useState } from 'react';
-
+import React from 'react';
 import { ProfileLayout } from '../../components/layouts';
-import { DefaultImage, CreatePublicationForm } from '../../components/profile';
+import { CreatePublicationForm } from '../../components/publication-form';
 
 export const CreatePublicationPage = () => {
-    const [petImage, setPetImage] = useState('')
-
     return (
         <ProfileLayout layoutTitle={"Publicación"}>   
-            <CreatePublicationForm handleSubmit={() => {}} onSetPetImage={setPetImage} />
+            <CreatePublicationForm handleSubmit={() => {}} />
         </ProfileLayout>
     )
 }

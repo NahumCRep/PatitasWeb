@@ -7,7 +7,8 @@ import { ProvinceBtn } from '../pets/ProvinceBtn';
 // ** Icons
 import { FaSearchPlus, FaSearchMinus } from 'react-icons/fa';
 // ** Local Data
-import { provinces } from '../../localData/provinces'
+// import { provinces } from '../../localData/provinces'
+import { provinces } from '../../utils';
 
 export const PetsLayout = ({ pet, baseLinkPath, tlwColor, children }) => {
   const [isOptionsOpen, setIsOptionsOpen] = useState(false);
@@ -52,10 +53,11 @@ export const PetsLayout = ({ pet, baseLinkPath, tlwColor, children }) => {
             </Link>
           </div>
           <ul className="mt-2 py-3 text-plt-white md:py-0 md:text-plt-dark">
-            {provinces.map(prov => (
+            {console.log('layout',provinces)}
+            {provinces.map(province => (
               <ProvinceBtn
-                key={prov.value}
-                province={prov}
+                key={province}
+                province={province}
                 basePath={baseLinkPath}
               />
             ))}

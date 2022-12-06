@@ -28,7 +28,7 @@ export const pets = [
         age: '7 meses',
         genre: 'macho',
         breed: 'aguacatero',
-        location: 'santiago, veraguas',
+        location: 'veraguas',
         pet: 'perro'
     },
     {
@@ -37,7 +37,7 @@ export const pets = [
         age: '7 meses',
         genre: 'macho',
         breed: 'aguacatero',
-        location: 'santiago, veraguas',
+        location: 'veraguas',
         pet: 'perro'
     },
     {
@@ -46,7 +46,7 @@ export const pets = [
         age: '7 meses',
         genre: 'macho',
         breed: 'aguacatero',
-        location: 'santiago, veraguas',
+        location: 'veraguas',
         pet: 'perro'
     },
     {
@@ -55,7 +55,7 @@ export const pets = [
         age: '7 meses',
         genre: 'macho',
         breed: 'aguacatero',
-        location: 'santiago, veraguas',
+        location: 'veraguas',
         pet: 'perro'
     },
     {
@@ -64,7 +64,7 @@ export const pets = [
         age: '7 meses',
         genre: 'macho',
         breed: 'aguacatero',
-        location: 'santiago, veraguas',
+        location: 'veraguas',
         pet: 'perro'
     },
     {

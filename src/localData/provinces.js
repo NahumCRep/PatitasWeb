@@ -1,38 +1,38 @@
 export const provinces = [
         {
-            "province":"Panamá",
+            "label":"Panamá",
             "value":"panama"
         },
         {
-            "province":"Colón",
+            "label":"Colón",
             "value":"colon"
         },
         {
-            "province":"Darién",
+            "label":"Darién",
             "value":"darien"
         },
         {
-            "province":"Coclé",
+            "label":"Coclé",
             "value":"cocle"
         },
         {
-            "province":"Veraguas",
+            "label":"Veraguas",
             "value":"veraguas"
         },
         {
-            "province":"Bocas del Toro",
+            "label":"Bocas del Toro",
             "value":"bocas-del-toro"
         },
         {
-            "province":"Herrera",
+            "label":"Herrera",
             "value":"herrera"
         },
         {
-            "province":"Los Santos",
+            "label":"Los Santos",
             "value":"los-santos"
         },
         {
-            "province":"Chiriquí",
+            "label":"Chiriquí",
             "value":"chiriqui"
         }
 ]

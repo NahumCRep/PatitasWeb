@@ -2,12 +2,12 @@ import React from 'react';
 import dogImage from '../../assets/images/dogDefaultImg.jpg';
 import catImage from '../../assets/images/catDefaultImg.jpg';
 
-export const DefaultImage = ({ pet }) => {
+export const DefaultImage = ({ isDog }) => {
     return (
         <img 
-            src={pet === 'dog' ? dogImage : catImage} 
+            src={isDog ? dogImage : catImage} 
             className="w-full h-full object-cover"
-            alt={`${pet} default image`} 
+            alt={`imagen por defecto`} 
         />
     )
 }

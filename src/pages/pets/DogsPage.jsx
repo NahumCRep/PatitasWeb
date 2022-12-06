@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react'
+import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 // ** Icons
 import { FaDog } from 'react-icons/fa';
@@ -9,10 +9,6 @@ import { pets } from '../../localData/testData';
 
 export const DogsPage = () => {
   const {province, page} = useParams();
-
-  // const showParams = useMemo(() => {
-  //   console.log('llamada');
-  // }, [params])
 
   useEffect(() => {
     console.log({province, page});

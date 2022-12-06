@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { AuthLayout } from '../../components/layouts';
 
-
 export const LoginPage = () => {
   const { startLogin } = useAuthStore();
   
@@ -55,17 +54,17 @@ export const LoginPage = () => {
         >
           {({ errors, touched, isSubmitting }) => (
             <Form className="text-plt-dark mt-8 flex flex-col gap-2">
-              {console.log(touched)}
               <div className='h-24'>
-                <label htmlFor="email" className="block text-lg text-gray-600">correo</label>
-                <Field type="email" name="email" className={`w-full mt-1 p-2 border-2 ${touched.email && errors.email ? 'border-red-500':'border-plt-blue'}`} />
-                <ErrorMessage name="email" component="div" className="text-red-500 text-sm" />
+                <label htmlFor="email" className="block text-sm text-gray-600">correo</label>
+                <Field type="email" name="email" className={`w-full mt-1 p-2 border-2 text-sm font-normal ${touched.email && errors.email ? 'border-red-500':'border-plt-blue'}`} />
+                <ErrorMessage name="email" component="div" className="text-red-500 text-xs" />
               </div>
+              
 
               <div className="h-24">
-                <label htmlFor="password" className="block text-lg text-gray-600">contraseña</label>
+                <label htmlFor="password" className="block text-sm text-gray-600">contraseña</label>
                 <Field type="password" name="password" className={`w-full mt-1 p-2 border-2 ${touched.password && errors.password ? 'border-red-500':'border-plt-blue'}`} />
-                <ErrorMessage name="password" component="div" className="text-red-500 text-sm" />
+                <ErrorMessage name="password" component="div" className="text-red-500 text-xs" />
               </div>
 
               <button 

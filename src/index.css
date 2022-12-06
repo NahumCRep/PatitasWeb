@@ -5,8 +5,12 @@
 @tailwind utilities;
 
 @layer components{
-    .formFieldComponent{
-        @apply w-full mt-1 p-1 border-2 border-slate-300 text-sm;
+    .formField{
+        @apply w-full mt-1 p-2 border-2 border-slate-300 text-sm;
+    }
+
+    .inputError{
+        @apply border-red-500;
     }
 
     .grayButton{

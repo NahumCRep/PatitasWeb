@@ -1,10 +1,10 @@
 import React from 'react';
 import { Field } from 'formik';
 
-export const SelectFormField = ({ name, options }) => {
+export const SelectField = ({ name, options }) => {
     return (
         <div>
-            <Field as="select" name={name} className="inline-block cursor-pointer formFieldComponent">
+            <Field as="select" name={name} className="inline-block cursor-pointer formField">
                 <option disabled value="">Seleccionar...</option>
                 {
                     options.map((optionItem) => (

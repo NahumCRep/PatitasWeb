@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Field, Form, Formik } from 'formik';
-import { provinces } from '../../localData/provinces';
 
-import { SubForm, PetProfilePhoto } from './form';
+import { SubForm, PetProfilePhoto } from './';
 import { FaPlus } from 'react-icons/fa';
 
 import { usePetStore } from '../../hooks';
+import { districts, provinces } from '../../utils';
 
 
 export const CreatePublicationForm = ({ handleSubmit, onSetPetImage }) => {
@@ -20,9 +20,11 @@ export const CreatePublicationForm = ({ handleSubmit, onSetPetImage }) => {
             initialValues={{
                 name: '',
                 breed: '',
+                genre: 'macho',
                 ageNumber: 0,
                 ageString: '',
-                location: provinces[0].value,
+                location: provinces[0],
+                district: districts[provinces[0]],
                 description: '',
                 whatsapp: '',
                 email: ''
@@ -38,8 +40,8 @@ export const CreatePublicationForm = ({ handleSubmit, onSetPetImage }) => {
                     errors.ageString = "seleccione un valor"
                 }
 
-                if (!values.email) {
-                    errors.email = "ingrese un correo de contacto"
+                if (!values.whatsapp) {
+                    errors.whatsapp = "ingrese un numero de contacto"
                 }
 
                 return errors;
@@ -67,18 +69,17 @@ export const CreatePublicationForm = ({ handleSubmit, onSetPetImage }) => {
                         </button>
                     </div>
                     <Form>
-                        <div className='w-full flex flex-col gap-5 mt-5 md:flex-row'>
+                        <div className='w-full h-auto flex flex-col gap-5 mt-5 md:flex-row'>
+                            <PetProfilePhoto isDog={isDog} />
 
-                            <PetProfilePhoto pet={isDog} />
-
-                            <div className="w-full md:w-[60%] font-secondary">
-                                <SubForm touched={touched} errors={errors} />   
+                            <div className="w-full mt-2 md:w-[60%] md:mt-0 font-secondary">
+                                <SubForm />   
                             </div>
                         </div>
 
                         <div className="mt-3">
                             <label htmlFor='description'>Descripcion</label>
-                            <Field as="textarea" name="description" className="formFieldComponent h-28 resize-none" />
+                            <Field as="textarea" name="description" className="formField h-28 resize-none" />
                         </div>
 
                         <div className="w-full mt-5">
