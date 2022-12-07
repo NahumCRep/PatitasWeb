@@ -1,63 +1,75 @@
 import { useState } from 'react';
 import { Field, Form, Formik } from 'formik';
+import * as Yup from "yup";
 
-import { SubForm, PetProfilePhoto } from './';
-import { FaPlus } from 'react-icons/fa';
+import { SubForm, PetProfilePhoto, ExtraImagesForm } from './';
+// import { FaPlus } from 'react-icons/fa';
 
 import { usePetStore } from '../../hooks';
-import { districts, provinces } from '../../utils';
+import { districts, provinces } from '../../utils/location';
 
 
-export const CreatePublicationForm = ({ handleSubmit, onSetPetImage }) => {
+export const CreatePublicationForm = ({ handleSubmit }) => {
     const [isDog, setIsDog] = useState(true);
-    const {image, startClearPreviewImage, startUploadingPetImage} = usePetStore();
-    // const [petImages, setPetImages] = useState([]);
-
+    const { image, startClearPreviewImage, startPreviewImgFile, startUploadingPetImage } = usePetStore();
+    
     const handlePetState = () => { setIsDog(!isDog) }
+
+    const handleBeforeSubmit = (formData) => {
+        // adding extra data
+        formData.pet_type = isDog ? 'dog' : 'cat'
+        formData.image = image;
+        formData.is_adopted = false;
+        formData.publication_date = new Date();
+        formData.extra_images = [];
+        formData.publication_user = '123456789'
+
+        console.log('data before',formData)
+    }
+
+   
+    const validationFormSchema = Yup.object().shape({
+        name: Yup.string().required('el nombre es requerido'),
+        ageString: Yup.string().required('seleccione un valor'),
+        contact: Yup.object().shape({
+            whatsapp: Yup.string().matches(/[0-9]/, 'ingrese solamente numeros').required('ingrese un numero de contacto')
+        })
+    })
+
+    const initialValues = {
+        name: '',
+        breed: '',
+        genre: 'macho',
+        age: '',
+        ageNumber: 0,
+        ageString: '',
+        location: {
+            province: provinces[0],
+            district: districts[provinces[0]][0]
+        },
+        description: '',
+        contact: {
+            whatsapp: '',
+            email: ''
+        }
+    }
 
     return (
         <Formik
-            initialValues={{
-                name: '',
-                breed: '',
-                genre: 'macho',
-                ageNumber: 0,
-                ageString: '',
-                location: provinces[0],
-                district: districts[provinces[0]],
-                description: '',
-                whatsapp: '',
-                email: ''
-            }}
-            validate={values => {
-                const errors = {};
-
-                if (!values.name) {
-                    errors.name = "ingrese el nombre de la mascota"
-                }
-
-                if (!values.ageString) {
-                    errors.ageString = "seleccione un valor"
-                }
-
-                if (!values.whatsapp) {
-                    errors.whatsapp = "ingrese un numero de contacto"
-                }
-
-                return errors;
-            }}
-
+            initialValues={initialValues}
+            validationSchema={validationFormSchema}
             onSubmit={(values, { setSubmitting, resetForm }) => {
                 setTimeout(() => {
                     // alert(JSON.stringify(values, null, 2));
-                    startUploadingPetImage(image)
+                    // startUploadingPetImage(image)
                     startClearPreviewImage();
+                    handleBeforeSubmit(values);
                     setSubmitting(false);
                     resetForm();
                 }, 400);
             }}
         >
-            {({ errors, touched, isSubmitting }) => (
+            {({ isSubmitting }) => (
                 <div>
                     <h2>Que tipo de mascota es?</h2>
                     <div className="flex mt-2">
@@ -68,13 +80,11 @@ export const CreatePublicationForm = ({ handleSubmit, onSetPetImage }) => {
                             Gato
                         </button>
                     </div>
-                    <Form>
-                        <div className='w-full h-auto flex flex-col gap-5 mt-5 md:flex-row'>
+                    <Form className='h-auto'>
+                        
+                        <div className='w-full flex flex-col gap-5 mt-5 md:flex-row'>
                             <PetProfilePhoto isDog={isDog} />
-
-                            <div className="w-full mt-2 md:w-[60%] md:mt-0 font-secondary">
-                                <SubForm />   
-                            </div>
+                            <SubForm />
                         </div>
 
                         <div className="mt-3">
@@ -82,19 +92,7 @@ export const CreatePublicationForm = ({ handleSubmit, onSetPetImage }) => {
                             <Field as="textarea" name="description" className="formField h-28 resize-none" />
                         </div>
 
-                        <div className="w-full mt-5">
-                            <div className='flex items-center gap-2'>
-                                Imagenes adicionales
-                                <label htmlFor='extraImgs' className='text-slate-400 bg-slate-200 w-7 h-7 flex items-center justify-center cursor-pointer transition-colors duration-200 hover:bg-slate-300'>
-                                    <FaPlus size={15} />
-                                </label>
-                                <input type="file" id="extraImgs" className='hidden' />
-                            </div>
-                            <hr className='mt-2' />
-                            <div className='mt-3'>
-                                <div className='w-40 h-40 bg-slate-400'></div>
-                            </div>
-                        </div>
+                        <ExtraImagesForm />
 
                         <button
                             type="submit"
