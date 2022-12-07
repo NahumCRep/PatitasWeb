@@ -1,10 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
-import { onPreviweImage, onClearPreviewImage } from '../store/pet';
+import { onPreviweImage, onClearPreviewImage, onPreviewExtraImages } from '../store/pet';
 import patitasApi from "../api/patitasApi";
+import { readFile } from "../helpers";
 
 export const usePetStore = () => {
     // const [petImg, setPetImg] = useState('');
-    const { image } = useSelector(state => state.pet);
+    const { image, extraImages } = useSelector(state => state.pet);
     const dispatch = useDispatch();
 
     const startPreviewImgFile = (file) => {
@@ -23,6 +24,16 @@ export const usePetStore = () => {
         dispatch(onClearPreviewImage())
     }
 
+    const startReadAllFiles = async (files) => {
+        const filePromises = [];
+        for(const file of files){
+            filePromises.push(readFile(file))
+        }
+
+        const extraImages = await Promise.all(filePromises)
+        dispatch(onPreviewExtraImages(extraImages));    
+    }
+
     const startUploadingPetImage = async (imageFile) => {
         try {
             const {data} = await patitasApi.post('/pet/image', {"file": imageFile});
@@ -35,8 +46,10 @@ export const usePetStore = () => {
 
     return {
         image,
+        extraImages,
         startUploadingPetImage,
         startPreviewImgFile,
-        startClearPreviewImage
+        startClearPreviewImage,
+        startReadAllFiles
     }
 }
