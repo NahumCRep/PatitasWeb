@@ -1,13 +1,15 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { usePetStore } from '../../hooks';
 import { DefaultImage } from './DefaultImage';
 import { BsFillInfoCircleFill } from '../../utils/reactIcons'
 
 export const PetProfilePhoto = ({isDog}) => {
   const { image, startPreviewImgFile, startClearPreviewImage } = usePetStore();
+  const inputFileRef = useRef(null);
 
   useEffect(() => {
     startClearPreviewImage();
+    inputFileRef.current.value = null;
   },[isDog])
 
   const onChangePetImage = ({target}) => {
@@ -37,7 +39,13 @@ export const PetProfilePhoto = ({isDog}) => {
         subir imagen
       </label>
 
-      <input id='petImg' type="file" className='hidden' onChange={onChangePetImage} />
+      <input 
+        ref={inputFileRef} 
+        id='petImg' 
+        type="file" 
+        className='hidden' 
+        onChange={onChangePetImage} 
+      />
 
       <div className="flex items-center gap-2 text-slate-400 text-sm mt-4" >
         <BsFillInfoCircleFill size={20} />
