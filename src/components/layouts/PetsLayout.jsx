@@ -1,14 +1,9 @@
 import React, { useState, useEffect } from 'react';
-// ** Hooks
 import { Link, useLocation } from 'react-router-dom';
-// ** Components
 import { Layout } from './Layout'
 import { ProvinceBtn } from '../pets/ProvinceBtn';
-// ** Icons
 import { FaSearchPlus, FaSearchMinus } from 'react-icons/fa';
-// ** Local Data
-// import { provinces } from '../../localData/provinces'
-import { provinces } from '../../utils';
+import { provinces } from '../../utils/location';
 
 export const PetsLayout = ({ pet, baseLinkPath, tlwColor, children }) => {
   const [isOptionsOpen, setIsOptionsOpen] = useState(false);
