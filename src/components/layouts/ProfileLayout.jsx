@@ -40,7 +40,7 @@ export const ProfileLayout = ({ children, layoutTitle }) => {
 
           </div>
         </div>
-        <div className="h-[700px] p-4 md:p-9">
+        <div className="h-auto p-4 md:p-9">
           {children}
         </div>
       </div>
