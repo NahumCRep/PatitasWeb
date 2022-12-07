@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ErrorMessage, Field, useFormikContext } from 'formik';
 import { MdEmail, RiWhatsappFill } from '../../utils/reactIcons';
-import { provinces, districts } from '../../utils';
+import { provinces, districts } from '../../utils/location';
 
 import { InputField, RadioField, SelectField, ContactField } from '../form-fields'; 
 
@@ -18,8 +18,21 @@ export const SubForm = () => {
             : setIsSpecificAge(false)
     }
 
+    const selectDistricts = (province) => (districts[province])
+
+    useEffect(() => {
+        const provinceDistricts = selectDistricts(values.location.province);
+        values.location.district = provinceDistricts[0];
+    },[values.location.province])
+
+    useEffect(() => {
+        isSpecificAge
+            ? values.age = values.ageNumber + ' ' + values.ageString
+            : values.age = values.ageString 
+    }, [values.ageNumber, values.ageString])
+
     return (
-        <div className="flex flex-col gap-5 md:grid md:grid-cols-2 ">
+        <div className="w-full h-auto mt-2 md:w-[60%] md:mt-0 font-secondary flex flex-col gap-5 md:grid md:grid-cols-2 ">
             {/* Name */}
             <InputField name={'name'} type={"text"} label="Nombre" />
 
@@ -60,29 +73,29 @@ export const SubForm = () => {
             </div>
 
             {/* Location */}
-            <div className="h-16 mt-2 col-span-2">
+            <div className="h-auto md:h-16 mt-2 col-span-2">
                 <div className="flex flex-col gap-5 md:grid md:grid-cols-2">
                     <div>
-                        <label htmlFor='location'>Provincia</label>
-                        <SelectField name="location" options={provinces} />
+                        <label htmlFor='location.province'>Provincia</label>
+                        <SelectField name="location.province" options={provinces} />
                     </div>
                     <div>
-                        <label htmlFor='district'>Distrito</label>
-                        <SelectField name="district" options={districts[values.location]} />
+                        <label htmlFor='location.district'>Distrito</label>
+                        <SelectField name="location.district" options={selectDistricts(values.location.province)} />
                     </div>
                 </div>
 
             </div>
 
             {/* Contact */}
-            <div className="col-span-2 mt-3 h-24">
+            <div className="col-span-2 mt-3 h-auto md:h-24">
                 <p>Medios de Contacto</p>
                 <div className="flex flex-col gap-5 md:grid md:grid-cols-2">
-                    <ContactField type='text' name='whatsapp' label='Whatsapp' isRequired >
+                    <ContactField type='text' name='contact.whatsapp' label='Whatsapp' isRequired >
                         <RiWhatsappFill size={25} color='#25d366' />
                     </ContactField>
 
-                    <ContactField type='email' name='email' label='Correo' >
+                    <ContactField type='email' name='contact.email' label='Correo' >
                         <MdEmail size={25} color="#E74C3C" />
                     </ContactField>
                 </div>

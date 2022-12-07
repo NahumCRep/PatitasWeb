@@ -1,10 +1,11 @@
 import React from 'react';
-import { Field } from 'formik';
+import { Field, useField } from 'formik';
 
 export const SelectField = ({ name, options }) => {
+    const [meta] = useField(name);
     return (
         <div>
-            <Field as="select" name={name} className="inline-block cursor-pointer formField">
+            <Field as="select" name={name} className={`inline-block cursor-pointer formField ${meta.touched && meta.error ? 'inputError':''}`}>
                 <option disabled value="">Seleccionar...</option>
                 {
                     options.map((optionItem) => (
