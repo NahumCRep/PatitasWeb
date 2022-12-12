@@ -20,9 +20,10 @@ export const petSlice = createSlice({
         },
         onClearPreviewImage:(state) => {
             state.image = '';
+            state.extraImages = [];
         },
         onPreviewExtraImages:(state, {payload}) => {
-            state.extraImages = payload;
+            state.extraImages.push(...payload);
         }
     }
 })

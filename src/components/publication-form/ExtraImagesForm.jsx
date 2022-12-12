@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaPlus } from '../../utils/reactIcons';
 import { usePetStore } from '../../hooks/usePetStore';
+import { ExtraImage } from './ExtraImage';
 
 export const ExtraImagesForm = () => {
     const { extraImages, startReadAllFiles } = usePetStore();
@@ -28,10 +29,10 @@ export const ExtraImagesForm = () => {
                 />
             </div>
             <hr className='mt-2' />
-            <div className='mt-3 flex gap-2'>
+            <div className='mt-3 w-full grid grid-cols-5 gap-3'>
                 {
                     extraImages && extraImages.map((extraImage) => (
-                        <img src={extraImage} className='w-40 h-40 object-contain' />
+                        <ExtraImage key={extraImage} imageSrc={extraImage} />
                     ))
                 }
             </div>
