@@ -6,7 +6,7 @@ export const DefaultImage = ({ isDog }) => {
     return (
         <img 
             src={isDog ? dogImage : catImage} 
-            className="w-full h-full object-cover"
+            className="w-full h-full bg-[#EFEFEF] object-contain"
             alt={`imagen por defecto`} 
         />
     )
