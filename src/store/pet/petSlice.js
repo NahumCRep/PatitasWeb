@@ -24,6 +24,9 @@ export const petSlice = createSlice({
         },
         onPreviewExtraImages:(state, {payload}) => {
             state.extraImages.push(...payload);
+        },
+        onDeleteExtraImage:(state, {payload}) => {
+            state.extraImages = state.extraImages.filter(extra => extra !== payload);
         }
     }
 })
@@ -31,5 +34,6 @@ export const petSlice = createSlice({
 export const { 
     onPreviweImage, 
     onClearPreviewImage, 
-    onPreviewExtraImages 
+    onPreviewExtraImages,
+    onDeleteExtraImage 
 } = petSlice.actions;

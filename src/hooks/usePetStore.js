@@ -1,23 +1,32 @@
 import { useDispatch, useSelector } from "react-redux";
-import { onPreviweImage, onClearPreviewImage, onPreviewExtraImages } from '../store/pet';
 import patitasApi from "../api/patitasApi";
 import { readFile } from "../helpers";
+import { 
+    onPreviweImage, 
+    onClearPreviewImage, 
+    onPreviewExtraImages,
+    onDeleteExtraImage 
+} from '../store/pet';
 
 export const usePetStore = () => {
     // const [petImg, setPetImg] = useState('');
     const { image, extraImages } = useSelector(state => state.pet);
     const dispatch = useDispatch();
 
-    const startPreviewImgFile = (file) => {
-        if(!file){
-            return dispatch(onClearPreviewImage())
-        };
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
+    const startPreviewImgFile = async (file) => {
+        // if(!file){
+        //     return dispatch(onClearPreviewImage())
+        // };
+        // const reader = new FileReader();
+        // reader.readAsDataURL(file);
 
-        reader.onloadend = () => {
-            dispatch(onPreviweImage(reader.result))
-        }
+        // reader.onloadend = () => {
+        //     dispatch(onPreviweImage(reader.result))
+        // }
+        if(!file) return;
+
+        const profilePhoto = await readFile(file)
+        dispatch(onPreviweImage(profilePhoto))
     }
 
     const startClearPreviewImage = () => {
@@ -44,12 +53,18 @@ export const usePetStore = () => {
         }
     }
 
+    const startDeleteExtraImage = (image) => {
+        if(!image) return;
+        dispatch(onDeleteExtraImage(image));
+    }
+
     return {
         image,
         extraImages,
         startUploadingPetImage,
         startPreviewImgFile,
         startClearPreviewImage,
-        startReadAllFiles
+        startReadAllFiles,
+        startDeleteExtraImage
     }
 }
