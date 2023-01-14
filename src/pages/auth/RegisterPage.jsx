@@ -1,10 +1,34 @@
-import React from 'react'
+import React from 'react';
+import * as Yup from "yup";
 // ** Components
 import { Link } from 'react-router-dom';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { AuthLayout } from '../../components/layouts';
+import { useAuthStore } from '../../hooks';
 
 export const RegisterPage = () => {
+  const { startUserRegistration } = useAuthStore();
+
+  const initialValues = { 
+    name: '', 
+    email: '', 
+    password: '', 
+    confirmPassword: '' 
+  }
+
+  const registerValidationSchema = Yup.object().shape({
+    name:  Yup.string().required('debe ingresar el nombre'),
+    email: Yup.string().required('debe ingresar el correo').email('ingrese un email valido'),
+    password: Yup.string().required('ingrese una contraseña').min(6, 'debe ser de al menos 6 caracteres'),
+    confirmPassword: Yup.string().required('ingrese nuevamente la contraseña')
+                      .oneOf([Yup.ref('password'), null], 'Las contraseñas deben coincidir')
+  })
+
+  const handleFormSubmit = (userFormValues) => {
+    const {name, email, password} = userFormValues;
+    startUserRegistration({name, email, password});
+  }
+
   return (
     <AuthLayout tlwBgColor={'bg-plt-cream'}>
       <div className="w-full h-auto overflow-auto px-4 font-secondary font-semibold md:px-20">
@@ -19,39 +43,12 @@ export const RegisterPage = () => {
           </Link>
         </p>
         <Formik
-          initialValues={{ name: '', email: '', password: '', confirmPassword: '' }}
-          validate={values => {
-            const errors = {};
-            if(!values.name){
-              errors.name = 'ingrese su nombre'
-            }else if(/[0-9]/i.test(values.name)){
-              errors.name = 'el nombre no puede llevar números'
-            }
-
-            if (!values.email) {
-              errors.email = 'ingrese el correo'
-            } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-              errors.email = 'correo no valido'
-            }
-
-            if (!values.password) {
-              errors.password = 'ingrese la contraseña'
-            } else if (values.password.length < 6) {
-              errors.password = 'la contraseña debe ser de 6 caracteres o más'
-            }
-
-            if(!values.confirmPassword){
-              errors.confirmPassword = 'ingrese nuevamenta la contraseña'
-            }else if(values.confirmPassword !== values.password){
-              errors.confirmPassword = 'las contraseñas no coinciden'
-            }
-
-            return errors;
-          }}
+          initialValues={initialValues}
+          validationSchema={registerValidationSchema}
           onSubmit={(values, { setSubmitting, resetForm }) => {
-            console.log(values);
+            handleFormSubmit(values);
             setTimeout(() => {
-              alert(JSON.stringify(values, null, 2));
+              // alert(JSON.stringify(values, null, 2));
               setSubmitting(false);
               resetForm();
             }, 400);

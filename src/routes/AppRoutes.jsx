@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 // ** Hooks
 import { useAuthStore } from '../hooks';
@@ -12,7 +12,11 @@ import { DogsRoutes, CatsRoutes } from './pets';
 
 export const AppRoutes = () => {
     // const isLogged = 'authenticated'
-    const { status } = useAuthStore();
+    const { status, startCheckingToken } = useAuthStore();
+
+    useEffect(() => {
+        startCheckingToken();
+    },[])
 
     return (
         <Routes>

@@ -7,10 +7,11 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { AuthLayout } from '../../components/layouts';
 
 export const LoginPage = () => {
-  const { startLogin } = useAuthStore();
+  const { startLogin, errorMessage } = useAuthStore();
   
   const handleLogin = (data) => {
-    startLogin(data);
+    const {email, password} = data;
+    startLogin({email, password});
   }
 
   return (
@@ -43,12 +44,11 @@ export const LoginPage = () => {
             return errors;
           }}
           onSubmit={(values, { setSubmitting, resetForm }) => {
-            console.log(values);
+            handleLogin(values);
             setTimeout(() => {
-              alert(JSON.stringify(values, null, 2));
+              // alert(JSON.stringify(values, null, 2));
               setSubmitting(false);
               resetForm();
-              handleLogin(values);
             }, 400);
           }}
         >
@@ -60,17 +60,31 @@ export const LoginPage = () => {
                 <ErrorMessage name="email" component="div" className="text-red-500 text-xs" />
               </div>
               
-
               <div className="h-24">
                 <label htmlFor="password" className="block text-sm text-gray-600">contraseña</label>
                 <Field type="password" name="password" className={`w-full mt-1 p-2 border-2 ${touched.password && errors.password ? 'border-red-500':'border-plt-blue'}`} />
                 <ErrorMessage name="password" component="div" className="text-red-500 text-xs" />
               </div>
 
+              <div className='flex items-center justify-between text-sm text-gray-400'>
+                  <label htmlFor="rememberme" className='flex items-center gap-2'>
+                    <input type="checkbox" name='rememberme' />
+                    recordarme
+                  </label>
+                  <Link to={"#"}>olvidaste tu contraseña ?</Link>
+              </div>
+              
+              {
+                errorMessage && 
+                <small className='w-full p-2 mt-2 text-center text-slate-50 bg-red-400'>
+                  {errorMessage}
+                </small>
+              }
+
               <button 
                 type="submit" 
                 disabled={isSubmitting}
-                className="w-full h-14 mt-10 bg-plt-blue text-white transition-colors duration-500 hover:bg-plt-darkblue"
+                className="w-full h-14 mt-5 bg-plt-blue text-white transition-colors duration-500 hover:bg-plt-darkblue"
               >
                 aceptar
               </button>
