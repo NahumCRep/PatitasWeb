@@ -10,7 +10,7 @@ import { BsFillPlusCircleFill } from 'react-icons/bs';
 export const ProfilePublicationsPage = () => {
   const navigate = useNavigate();
   const { user } = useAuthStore();
-  const { startGetPublicationsByUser } = usePublicationStore();
+  const { startGetPublicationsByUser, publications } = usePublicationStore();
 
   const redirectToCreatePublicationPage = () => {
     navigate('crear');
@@ -25,7 +25,7 @@ export const ProfilePublicationsPage = () => {
         <div className="w-full h-9 flex items-center">
           <h2 className="font-secondary">Mis Publicaciones</h2>
         </div>
-        <div className="mt-3">
+        <div className="mt-3 grid grid-cols-5 gap-2">
           <button
             onClick={() => redirectToCreatePublicationPage()} 
             className="flex items-center justify-center cursor-pointer 
@@ -34,7 +34,12 @@ export const ProfilePublicationsPage = () => {
             <BsFillPlusCircleFill size={40} />
           </button>
           {
-
+            publications 
+            && (
+              publications.map((publicaiton) => (
+                <PublicationCard publication={publicaiton} />
+              ))
+            )
           }
         </div>
     </ProfileLayout>

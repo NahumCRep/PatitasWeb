@@ -6,6 +6,6 @@ import { publicationSlice } from "./pet/publicationSlice";
 export const store = configureStore({
     reducer:{
         auth: authSlice.reducer,
-        pet: publicationSlice.reducer
+        publication: publicationSlice.reducer
     }
 })

@@ -1,1 +1,1 @@
-export * from './publicationSlice'
+export * from './publicationSlice';

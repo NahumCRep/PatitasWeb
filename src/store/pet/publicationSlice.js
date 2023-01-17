@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export const publicationSlice = createSlice({
-    name: 'pet',
+    name: 'publication',
     initialState:{
         uid: '',
         name:'',
@@ -12,7 +12,8 @@ export const publicationSlice = createSlice({
         whatsapp: '',
         description: '',
         image: '',
-        extraImages: []
+        extraImages: [],
+        publications: []
     },
     reducers:{
         onPreviweImage:(state, {payload}) => {
@@ -27,7 +28,10 @@ export const publicationSlice = createSlice({
         },
         onDeleteExtraImage:(state, {payload}) => {
             state.extraImages = state.extraImages.filter(extra => extra !== payload);
-        }
+        },
+        onSetPublications:(state, {payload}) => {
+            state.publications = payload;
+        },
     }
 })
 
@@ -35,5 +39,6 @@ export const {
     onPreviweImage, 
     onClearPreviewImage, 
     onPreviewExtraImages,
-    onDeleteExtraImage 
+    onDeleteExtraImage,
+    onSetPublications 
 } = publicationSlice.actions;

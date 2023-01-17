@@ -5,12 +5,13 @@ import {
     onPreviweImage, 
     onClearPreviewImage, 
     onPreviewExtraImages,
-    onDeleteExtraImage 
+    onDeleteExtraImage,
+    onSetPublications 
 } from '../store/pet';
 
 export const usePublicationStore = () => {
     // const [petImg, setPetImg] = useState('');
-    const { image, extraImages } = useSelector(state => state.pet);
+    const { image, extraImages, publications } = useSelector(state => state.publication);
     const dispatch = useDispatch();
 
     const startCreatePublication = async (publication) => { 
@@ -20,7 +21,9 @@ export const usePublicationStore = () => {
 
     const startGetPublicationsByUser = async (userId) => {
         const res = await patitasApi.get(`/publication/user/${userId}`);
+        dispatch(onSetPublications(res.data.publications))
         console.log('publications by user', res);
+        console.log('publications by user publ', res.data.publications);
     }
 
     const startPreviewImgFile = async (file) => {
@@ -62,6 +65,7 @@ export const usePublicationStore = () => {
     return {
         image,
         extraImages,
+        publications,
         startCreatePublication,
         startGetPublicationsByUser,
         startUploadingPetImage,
