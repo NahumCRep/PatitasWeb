@@ -10,7 +10,7 @@ import { BsFillFilePostFill, BsFillGearFill } from 'react-icons/bs';
 import { AiFillHome } from 'react-icons/ai';
 
 export const SideNav = ({ navOpen, handleNav }) => {
-    const { startLogout } = useAuthStore();
+    const { user, startLogout } = useAuthStore();
     
     const handleLogout = () => {
         startLogout();
@@ -31,7 +31,9 @@ export const SideNav = ({ navOpen, handleNav }) => {
                 </div>
 
                 <div className="w-full h-12 bg-plt-lighterDark rounded-xl flex justify-center items-center">
-                    <p className="text-white font-secondary font-semibold whitespace-nowrap">Nahum Casco</p>
+                    <p className="text-white font-secondary font-semibold whitespace-nowrap">
+                        {user.name}
+                    </p>
                 </div>
 
                 {/* <SideNavLink url={'/'}>
