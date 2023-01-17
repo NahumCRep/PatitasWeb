@@ -1,9 +1,9 @@
 import React from 'react';
 import { FaTimes } from '../../utils/reactIcons';
-import { usePetStore } from '../../hooks/usePetStore';
+import { usePublicationStore } from '../../hooks/usePublicationStore';
 
 export const ExtraImage = ({imageSrc}) => {
-  const { startDeleteExtraImage } = usePetStore();
+  const { startDeleteExtraImage } = usePublicationStore();
 
   const handleDeleteExtraImage = () => {
     startDeleteExtraImage(imageSrc)

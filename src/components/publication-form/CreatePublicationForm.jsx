@@ -5,14 +5,14 @@ import * as Yup from "yup";
 import { SubForm, PetProfilePhoto, ExtraImagesForm } from './';
 // import { FaPlus } from 'react-icons/fa';
 
-import { usePetStore, useAuthStore } from '../../hooks';
+import { usePublicationStore, useAuthStore } from '../../hooks';
 import { districts, provinces } from '../../utils/location';
 
 
 export const CreatePublicationForm = ({ handleSubmit }) => {
     const [isDog, setIsDog] = useState(true);
     const { user } = useAuthStore()
-    const { image, extraImages, startCreatePublication, startClearPreviewImage } = usePetStore();
+    const { image, extraImages, startCreatePublication, startClearPreviewImage } = usePublicationStore();
     
     const handlePetState = () => { setIsDog(!isDog) }
 

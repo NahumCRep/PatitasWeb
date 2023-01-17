@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { authSlice } from "./auth/authSlice";
-import { petSlice } from "./pet/petSlice";
+import { publicationSlice } from "./pet/publicationSlice";
 
 
 export const store = configureStore({
     reducer:{
         auth: authSlice.reducer,
-        pet: petSlice.reducer
+        pet: publicationSlice.reducer
     }
 })

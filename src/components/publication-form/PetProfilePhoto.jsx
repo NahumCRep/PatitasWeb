@@ -1,10 +1,10 @@
 import { useEffect, useRef } from 'react';
-import { usePetStore } from '../../hooks';
+import { usePublicationStore } from '../../hooks';
 import { DefaultImage } from './DefaultImage';
 import { BsFillInfoCircleFill } from '../../utils/reactIcons'
 
 export const PetProfilePhoto = ({isDog}) => {
-  const { image, startPreviewImgFile, startClearPreviewImage } = usePetStore();
+  const { image, startPreviewImgFile, startClearPreviewImage } = usePublicationStore();
   const inputFileRef = useRef(null);
 
   useEffect(() => {

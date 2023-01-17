@@ -1,1 +1,1 @@
-export * from './petSlice'
+export * from './publicationSlice'

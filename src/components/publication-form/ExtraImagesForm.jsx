@@ -1,10 +1,10 @@
 import React from 'react';
 import { FaPlus } from '../../utils/reactIcons';
-import { usePetStore } from '../../hooks/usePetStore';
+import { usePublicationStore } from '../../hooks';
 import { ExtraImage } from './ExtraImage';
 
 export const ExtraImagesForm = () => {
-    const { extraImages, startReadAllFiles } = usePetStore();
+    const { extraImages, startReadAllFiles } = usePublicationStore();
     
 
     const onChangeInputFile = ({target}) => {

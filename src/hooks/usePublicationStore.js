@@ -8,7 +8,7 @@ import {
     onDeleteExtraImage 
 } from '../store/pet';
 
-export const usePetStore = () => {
+export const usePublicationStore = () => {
     // const [petImg, setPetImg] = useState('');
     const { image, extraImages } = useSelector(state => state.pet);
     const dispatch = useDispatch();

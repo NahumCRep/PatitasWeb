@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const petSlice = createSlice({
+export const publicationSlice = createSlice({
     name: 'pet',
     initialState:{
         uid: '',
@@ -36,4 +36,4 @@ export const {
     onClearPreviewImage, 
     onPreviewExtraImages,
     onDeleteExtraImage 
-} = petSlice.actions;
+} = publicationSlice.actions;

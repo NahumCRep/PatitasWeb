@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { usePetStore, useAuthStore } from '../../hooks';
+import { usePublicationStore, useAuthStore } from '../../hooks';
 
 import { ProfileLayout } from '../../components/layouts';
 import { PublicationCard } from '../../components/profile';
@@ -10,7 +10,7 @@ import { BsFillPlusCircleFill } from 'react-icons/bs';
 export const ProfilePublicationsPage = () => {
   const navigate = useNavigate();
   const { user } = useAuthStore();
-  const { startGetPublicationsByUser } = usePetStore();
+  const { startGetPublicationsByUser } = usePublicationStore();
 
   const redirectToCreatePublicationPage = () => {
     navigate('crear');
@@ -34,7 +34,7 @@ export const ProfilePublicationsPage = () => {
             <BsFillPlusCircleFill size={40} />
           </button>
           {
-            
+
           }
         </div>
     </ProfileLayout>
