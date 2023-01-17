@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
+import { useAuthStore } from '../../hooks';
 // **Components
 import { NavLink } from 'react-router-dom';
 import { NavLi } from './NavLi';
 import { NavSubLi } from './NavSubLi';
+import { ProfileBox } from './ProfileBox';
 // **Logo
 import logo from '../../assets/icons/logo.svg';
 // **Icons
@@ -11,6 +13,7 @@ import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 
 
 export const Navbar = () => {
+  const { status } = useAuthStore();
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isAdoptOpen, setIsAdoptOpen] = useState(false);
 
@@ -23,7 +26,7 @@ export const Navbar = () => {
   }
 
   return (
-    <nav className='w-full h-[80px] shadow-xl flex items-center px-4 fixed z-50 bg-white md:h-[60px] md:justify-between md:px-20'>
+    <nav className='w-full h-[80px] shadow-xl flex items-center px-4 fixed z-50 bg-white md:h-[60px] md:justify-between'>
       {/* Logo */}
       <NavLink
         to={'/'}
@@ -45,7 +48,7 @@ export const Navbar = () => {
           <NavLi title={'Inicio'} url={"/"} />
           <li className="w-full h-auto md:w-fit md:h-[80px] md:relative">
               <button 
-                className="flex items-center gap-5 w-full h-16 px-10 outline-none border-none 
+                className="text-base  flex items-center gap-5 w-full h-16 px-6 outline-none border-none 
                           md:h-[80px] md:gap-3 md:w-fit md:hover:text-plt-blue"
                 onClick={handleAdoptionMenu}
               >
@@ -53,7 +56,7 @@ export const Navbar = () => {
                 {isAdoptOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}
               </button>
 
-              <ul className={`w-full transition-height duration-700 ${isAdoptOpen ? 'h-32':'h-0'} overflow-hidden 
+              <ul className={`w-full transition-height duration-700 ${isAdoptOpen ? 'h-24':'h-0'} overflow-hidden 
                               md:absolute md:top-[70px] md:bg-white md:text-plt-dark md:shadow-2xl md:scale-100`}>
                   <NavSubLi title={'Perros disponibles'} url={'/perros'} sublink />
                   <NavSubLi title={'Gatos disponibles'} url={'/gatos'} sublink />
@@ -61,7 +64,12 @@ export const Navbar = () => {
           </li>
 
           <NavLi title={'Nosotros'} url={"/nosotros"} />
-          <NavLi title={'Login'} url={"/login"} />
+
+          {
+            status === 'authenticated'
+              ? <ProfileBox />
+              : <NavLi title={'Login'} url={"/login"} />
+          }
         </ul>
       </div>
 
