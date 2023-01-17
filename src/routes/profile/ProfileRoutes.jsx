@@ -9,7 +9,7 @@ export const ProfileRoutes = () => {
             <Route path='/' element={<ProfilePage />} />
             <Route path='publicaciones' element={<ProfilePublicationsPage />} />
             <Route path='publicaciones/crear' element={<CreatePublicationPage />} />
-            <Route path='informacion' element={<ProfilePage />}/>
+            <Route path='publicaciones/:id' element={<CreatePublicationPage />}/>
             <Route path='*' element={<NotFoundPage />} />
         </Routes>
     )

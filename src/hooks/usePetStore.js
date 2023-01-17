@@ -13,16 +13,17 @@ export const usePetStore = () => {
     const { image, extraImages } = useSelector(state => state.pet);
     const dispatch = useDispatch();
 
-    const startPreviewImgFile = async (file) => {
-        // if(!file){
-        //     return dispatch(onClearPreviewImage())
-        // };
-        // const reader = new FileReader();
-        // reader.readAsDataURL(file);
+    const startCreatePublication = async (publication) => { 
+        const res = await patitasApi.post('/publication/new', publication);
+        console.log('publication resp', res);
+    }
 
-        // reader.onloadend = () => {
-        //     dispatch(onPreviweImage(reader.result))
-        // }
+    const startGetPublicationsByUser = async (userId) => {
+        const res = await patitasApi.get(`/publication/user/${userId}`);
+        console.log('publications by user', res);
+    }
+
+    const startPreviewImgFile = async (file) => {
         if(!file) return;
 
         const profilePhoto = await readFile(file)
@@ -61,6 +62,8 @@ export const usePetStore = () => {
     return {
         image,
         extraImages,
+        startCreatePublication,
+        startGetPublicationsByUser,
         startUploadingPetImage,
         startPreviewImgFile,
         startClearPreviewImage,

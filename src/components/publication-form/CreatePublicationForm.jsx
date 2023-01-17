@@ -5,13 +5,14 @@ import * as Yup from "yup";
 import { SubForm, PetProfilePhoto, ExtraImagesForm } from './';
 // import { FaPlus } from 'react-icons/fa';
 
-import { usePetStore } from '../../hooks';
+import { usePetStore, useAuthStore } from '../../hooks';
 import { districts, provinces } from '../../utils/location';
 
 
 export const CreatePublicationForm = ({ handleSubmit }) => {
     const [isDog, setIsDog] = useState(true);
-    const { image, startClearPreviewImage, startPreviewImgFile, startUploadingPetImage } = usePetStore();
+    const { user } = useAuthStore()
+    const { image, extraImages, startCreatePublication, startClearPreviewImage } = usePetStore();
     
     const handlePetState = () => { setIsDog(!isDog) }
 
@@ -21,10 +22,11 @@ export const CreatePublicationForm = ({ handleSubmit }) => {
         formData.image = image;
         formData.is_adopted = false;
         formData.publication_date = new Date();
-        formData.extra_images = [];
-        formData.publication_user = '123456789'
+        formData.extra_images = extraImages;
+        formData.publication_user = user.uid;
 
         console.log('data before',formData)
+        startCreatePublication(formData);
     }
 
    
@@ -59,11 +61,9 @@ export const CreatePublicationForm = ({ handleSubmit }) => {
             initialValues={initialValues}
             validationSchema={validationFormSchema}
             onSubmit={(values, { setSubmitting, resetForm }) => {
+                handleBeforeSubmit(values);
                 setTimeout(() => {
-                    // alert(JSON.stringify(values, null, 2));
-                    // startUploadingPetImage(image)
                     startClearPreviewImage();
-                    handleBeforeSubmit(values);
                     setSubmitting(false);
                     resetForm();
                 }, 400);
