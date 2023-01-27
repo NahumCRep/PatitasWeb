@@ -4,7 +4,7 @@ import { DefaultImage } from './DefaultImage';
 import { BsFillInfoCircleFill } from '../../utils/reactIcons'
 
 export const PetProfilePhoto = ({isDog}) => {
-  const { image, startPreviewImgFile, startClearPreviewImage } = usePublicationStore();
+  const { image, activePublication, startPreviewImgFile, startClearPreviewImage } = usePublicationStore();
   const inputFileRef = useRef(null);
 
   useEffect(() => {
@@ -20,10 +20,10 @@ export const PetProfilePhoto = ({isDog}) => {
     <div className='w-full h-96 md:w-[40%] md:pr-5'>
       <figure className='w-full h-[70%]'>
         {
-          image 
+          activePublication.image 
           ? (
               <img 
-                src={image} 
+                src={activePublication.image} 
                 className="w-full h-full object-cover"
                 alt={`${isDog ? 'Foto de perfil del perro':'Foto de perfil del gato'}`} 
               />
