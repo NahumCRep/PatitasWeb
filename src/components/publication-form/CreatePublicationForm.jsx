@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Field, Form, Formik } from 'formik';
 import * as Yup from "yup";
 
@@ -9,10 +9,19 @@ import { usePublicationStore, useAuthStore } from '../../hooks';
 import { districts, provinces } from '../../utils/location';
 
 
-export const CreatePublicationForm = ({ handleSubmit }) => {
+export const CreatePublicationForm = () => {
     const [isDog, setIsDog] = useState(true);
+    const [formInitialValues, setFormInitialValues] = useState({})
     const { user } = useAuthStore()
-    const { image, extraImages, startCreatePublication, startClearPreviewImage } = usePublicationStore();
+    const { 
+        image, 
+        extraImages,
+        activePublication, 
+        startCreatePublication, 
+        startClearPreviewImage 
+    } = usePublicationStore();
+
+    console.log(activePublication);
     
     const handlePetState = () => { setIsDog(!isDog) }
 
@@ -28,7 +37,6 @@ export const CreatePublicationForm = ({ handleSubmit }) => {
         console.log('data before',formData)
         startCreatePublication(formData);
     }
-
    
     const validationFormSchema = Yup.object().shape({
         name: Yup.string().required('el nombre es requerido'),
@@ -38,27 +46,32 @@ export const CreatePublicationForm = ({ handleSubmit }) => {
         })
     })
 
-    const initialValues = {
-        name: '',
-        breed: '',
-        genre: 'macho',
-        age: '',
-        ageNumber: 0,
-        ageString: '',
-        location: {
-            province: provinces[0],
-            district: districts[provinces[0]][0]
-        },
-        description: '',
-        contact: {
-            whatsapp: '',
-            email: ''
+    useEffect(() => {
+        const initialValues = {
+            name: activePublication.name || '',
+            breed: activePublication.breed || '',
+            genre: activePublication?.genre !== '' ? activePublication.genre : 'macho',
+            age: '',
+            ageNumber: 0,
+            ageString: '',
+            location: {
+                province: provinces[0],
+                district: districts[provinces[0]][0]
+            },
+            description: '',
+            contact: {
+                whatsapp: '',
+                email: ''
+            }
         }
-    }
+
+        setFormInitialValues(initialValues)
+    }, [activePublication])
+
 
     return (
         <Formik
-            initialValues={initialValues}
+            initialValues={formInitialValues}
             validationSchema={validationFormSchema}
             onSubmit={(values, { setSubmitting, resetForm }) => {
                 handleBeforeSubmit(values);
