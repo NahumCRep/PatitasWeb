@@ -39,7 +39,11 @@ module.exports = {
       },
       outlineOffset:{
         '30': '30px' 
-      }
+      },
+      gridTemplateColumns: {
+        // Simple 16 column grid
+        '100x300': 'repeat(auto-fit,  minmax(100px, 1fr))',
+      },
     },
   },
   plugins: [],
