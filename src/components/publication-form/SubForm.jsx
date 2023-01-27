@@ -5,7 +5,7 @@ import { provinces, districts } from '../../utils/location';
 
 import { InputField, RadioField, SelectField, ContactField } from '../form-fields'; 
 
-const ageWithoutNumberOptions = ['adulto', 'joven', 'bebé'];
+const ageWithoutNumberOptions = ['anciano', 'adulto', 'joven', 'cachorro'];
 const ageWithNumberOptions = ['semanas', 'meses', 'años'];
 
 export const SubForm = () => {
@@ -19,6 +19,10 @@ export const SubForm = () => {
     }
 
     const selectDistricts = (province) => (districts[province])
+
+    useEffect(() => {
+        console.log(values)
+    }, [values])
 
     useEffect(() => {
         const provinceDistricts = selectDistricts(values.location.province);
