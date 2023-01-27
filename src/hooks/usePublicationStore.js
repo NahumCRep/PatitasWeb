@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from 'react-router-dom'
 import patitasApi from "../api/patitasApi";
 import { readFile } from "../helpers";
 import { 
@@ -6,31 +7,52 @@ import {
     onClearPreviewImage, 
     onPreviewExtraImages,
     onDeleteExtraImage,
-    onSetPublications 
+    onSetPublications,
+    onSetActivePublication,
+    onClearActivePublication,
+    onSetProfilePetPhoto,
+    onSetPublicationExtraImages
 } from '../store/pet';
 
 export const usePublicationStore = () => {
+    const navigate = useNavigate();
     // const [petImg, setPetImg] = useState('');
-    const { image, extraImages, publications } = useSelector(state => state.publication);
+    const { image, extraImages, publications, activePublication } = useSelector(state => state.publication);
     const dispatch = useDispatch();
 
-    const startCreatePublication = async (publication) => { 
-        const res = await patitasApi.post('/publication/new', publication);
-        console.log('publication resp', res);
+    const startCreatePublication = async (publication) => {
+        if(publication._id){
+            const res = await patitasApi.put(`/publication/update/${publication._id}`, publication)
+            console.log('publication resp', res);
+            dispatch(onClearActivePublication())
+            navigate('/perfil/publicaciones')
+        }else{
+            const res = await patitasApi.post('/publication/new', publication);
+            console.log('publication resp', res);
+        } 
+        console.log('sending', publication)
     }
 
     const startGetPublicationsByUser = async (userId) => {
         const res = await patitasApi.get(`/publication/user/${userId}`);
         dispatch(onSetPublications(res.data.publications))
-        console.log('publications by user', res);
-        console.log('publications by user publ', res.data.publications);
+    }
+
+    const startGetPublicationById = async (publicationId) => {
+        dispatch(onClearActivePublication());
+        const res = await patitasApi.get(`/publication/${publicationId}`);
+        dispatch(onSetActivePublication(res.data.publication));
+    }
+
+    const startClearActivePublication = () => {
+        dispatch(onClearActivePublication())
     }
 
     const startPreviewImgFile = async (file) => {
         if(!file) return;
 
         const profilePhoto = await readFile(file)
-        dispatch(onPreviweImage(profilePhoto))
+        dispatch(onSetProfilePetPhoto(profilePhoto))
     }
 
     const startClearPreviewImage = () => {
@@ -44,7 +66,7 @@ export const usePublicationStore = () => {
         }
 
         const extraImages = await Promise.all(filePromises)
-        dispatch(onPreviewExtraImages(extraImages));    
+        dispatch(onSetPublicationExtraImages(extraImages));    
     }
 
     const startUploadingPetImage = async (imageFile) => {
@@ -66,8 +88,11 @@ export const usePublicationStore = () => {
         image,
         extraImages,
         publications,
+        activePublication,
         startCreatePublication,
+        startClearActivePublication,
         startGetPublicationsByUser,
+        startGetPublicationById, 
         startUploadingPetImage,
         startPreviewImgFile,
         startClearPreviewImage,
