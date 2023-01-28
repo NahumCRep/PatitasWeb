@@ -40,7 +40,7 @@ export const publicationSlice = createSlice({
             state.extraImages.push(...payload);
         },
         onDeleteExtraImage: (state, { payload }) => {
-            state.extraImages = state.extraImages.filter(extra => extra !== payload);
+            state.activePublication.extra_images = state.activePublication.extra_images.filter(extra => extra !== payload);
         },
         onSetPublications: (state, { payload }) => {
             state.publications = payload;

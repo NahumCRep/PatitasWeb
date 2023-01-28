@@ -16,7 +16,6 @@ import {
 
 export const usePublicationStore = () => {
     const navigate = useNavigate();
-    // const [petImg, setPetImg] = useState('');
     const { image, extraImages, publications, activePublication } = useSelector(state => state.publication);
     const dispatch = useDispatch();
 
@@ -30,7 +29,6 @@ export const usePublicationStore = () => {
             const res = await patitasApi.post('/publication/new', publication);
             console.log('publication resp', res);
         } 
-        console.log('sending', publication)
     }
 
     const startGetPublicationsByUser = async (userId) => {

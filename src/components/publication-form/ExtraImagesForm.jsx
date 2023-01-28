@@ -31,8 +31,8 @@ export const ExtraImagesForm = () => {
             <hr className='mt-2' />
             <div className='mt-3 w-full grid grid-cols-5 gap-3'>
                 {
-                    activePublication.extra_images && activePublication.extra_images.map((extraImage) => (
-                        <ExtraImage key={extraImage} imageSrc={extraImage} />
+                    activePublication.extra_images && activePublication.extra_images.map((extraImage, index) => (
+                        <ExtraImage key={extraImage + index} imageSrc={extraImage} />
                     ))
                 }
             </div>
