@@ -5,6 +5,7 @@ import { BsFillInfoCircleFill, BsThreeDotsVertical } from 'react-icons/bs'
 import { TbGenderMale, TbGenderFemale } from 'react-icons/tb';
 import { RiWhatsappFill } from 'react-icons/ri';
 import { TiWarning } from 'react-icons/ti';
+import { IoIosArrowForward } from 'react-icons/io';
 
 
 export { 
@@ -14,5 +15,6 @@ export {
     MdEmail, MdLocationOn, 
     RiWhatsappFill,
     TbGenderMale, TbGenderFemale,
-    TiWarning 
+    TiWarning,
+    IoIosArrowForward 
 }

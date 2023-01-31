@@ -3,11 +3,11 @@ import { useParams } from 'react-router-dom';
 import { useAuthStore, usePublicationStore } from '../../hooks';
 import { ProfileLayout } from '../../components/layouts';
 import { ExtraImagesForm, PetProfilePhoto, SubForm } from '../../components/publication-form';
-import { districts, provinces } from '../../utils/location';
+// import { districts, provinces } from '../../utils/location';
 import { Field, Form, Formik } from 'formik';
 import * as Yup from "yup";
 import { initialValues } from '../../utils/formikValues';
-import { DeletePublicationForm } from '../../components/dashboard/publication';
+import { DeletePublicationForm, ChangeAdoption, AdditionalSection } from '../../components/dashboard/publication';
 
 export const CreatePublicationPage = () => {
     const [isDog, setIsDog] = useState(true);
@@ -143,7 +143,19 @@ export const CreatePublicationPage = () => {
             </Formik>
 
             {
-                activePublication._id && <DeletePublicationForm publicationId={params.id} />
+                activePublication._id && 
+                (
+                    <>
+                        <hr className='mt-24' />
+                        <AdditionalSection sectionTitle={'Ha sido Adoptado ?'}>
+                            <ChangeAdoption publicationId={params.id} isAdopted={activePublication.is_adopted} />
+                        </AdditionalSection>
+                        <AdditionalSection sectionTitle={'Quiere Eliminar la Publicacion ?'}>
+                            <DeletePublicationForm publicationId={params.id} />
+                        </AdditionalSection>
+                    </>
+                )
+                    
             }
         </ProfileLayout>
     )
