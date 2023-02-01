@@ -20,7 +20,7 @@ export const DeletePublicationForm = ({ publicationId }) => {
             >
                 {({ isSubmitting }) => (
                     <Form className='mt-2 p-2 font-secondary border-2 border-dashed border-red-300'>
-                        <p className='text-sm mt-2 flex items-center gap-2'> 
+                        <p className='text-sm mt-2'> 
                             <TiWarning size={20} className='text-red-500' />
                             Ingrese el ID
                             <span className='font-bold text-red-500'> {publicationId} </span>
