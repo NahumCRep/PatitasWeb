@@ -32,7 +32,7 @@ export const Navbar = () => {
         to={'/'}
         className="flex items-center font-primary text-xl text-plt-cream"
       >
-        <img src={logo} className="w-11" alt='patitas' />
+        <img src={logo} className="w-11" alt='logo del sitio web patitas' />
         Patitas
       </NavLink>
 
