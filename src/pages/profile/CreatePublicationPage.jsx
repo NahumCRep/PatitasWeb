@@ -4,7 +4,7 @@ import { useAuthStore, usePublicationStore } from '../../hooks';
 import { ProfileLayout } from '../../components/layouts';
 import { ExtraImagesForm, PetProfilePhoto, SubForm } from '../../components/publication-form';
 // import { districts, provinces } from '../../utils/location';
-import { Field, Form, Formik } from 'formik';
+import { Field, Form, Formik, FormikProvider } from 'formik';
 import * as Yup from "yup";
 import { initialValues } from '../../utils/formikValues';
 import { DeletePublicationForm, ChangeAdoption, AdditionalSection } from '../../components/dashboard/publication';
@@ -21,16 +21,16 @@ export const CreatePublicationPage = () => {
 
     useEffect(() => {
         startClearActivePublication();
-        if(params.id){
+        if (params.id) {
             startGetPublicationById(params.id);
         }
     }, [params])
 
-    useEffect(() => { 
+    useEffect(() => {
         const publicationValues = {
-            name:   activePublication?.name,
-            breed:  activePublication?.breed,
-            genre:  activePublication?.genre,
+            name: activePublication?.name,
+            breed: activePublication?.breed,
+            genre: activePublication?.genre,
             age: '',
             ageNumber: activePublication?.ageNumber,
             ageString: activePublication?.ageString,
@@ -40,18 +40,19 @@ export const CreatePublicationPage = () => {
             },
             description: activePublication?.description,
             contact: {
-                whatsapp:  activePublication?.contact.whatsapp,
+                whatsapp: activePublication?.contact.whatsapp,
                 email: activePublication?.contact.email
-            }
+            },
+            is_adopted: activePublication?.is_adopted
         }
 
-        if(activePublication._id) {
+        if (activePublication._id) {
             setFormInitialValues(publicationValues)
             setIsDog(activePublication.pet_type === 'dog')
-        }else {
+        } else {
             setFormInitialValues(initialValues)
         }
-    },[activePublication])
+    }, [activePublication])
 
     if (params.id && !activePublication._id) return <h1>Cargando...</h1>
 
@@ -59,16 +60,14 @@ export const CreatePublicationPage = () => {
 
     const handleBeforeSubmit = (formData) => {
         // adding extra data
-   
         formData.pet_type = isDog ? 'dog' : 'cat'
         formData.image = activePublication.image;
         formData.extra_images = activePublication.extra_images;
-        formData.is_adopted = false;
         formData.publication_date = new Date();
         formData.publication_user = user.uid;
 
-        if(activePublication._id){
-           formData._id = activePublication._id;
+        if (activePublication._id) {
+            formData._id = activePublication._id;
         }
 
         startCreatePublication(formData);
@@ -83,11 +82,10 @@ export const CreatePublicationPage = () => {
     })
 
 
-    
+
 
     return (
         <ProfileLayout layoutTitle={"Publicación"}>
-            {/* <CreatePublicationForm  /> */}
             <Formik
                 enableReinitialize={true}
                 initialValues={formInitialValues}
@@ -126,36 +124,40 @@ export const CreatePublicationPage = () => {
 
                             <ExtraImagesForm />
 
+                            <hr className='mt-7' />
+                            {
+                                activePublication._id && (
+                                    <ChangeAdoption />
+                                )
+                            }
+
                             <button
                                 type="submit"
                                 disabled={isSubmitting}
                                 className="w-full md:w-40 h-11 text-sm my-4 rounded-lg float-right bg-plt-cream text-plt-dark transition-colors duration-500 hover:bg-plt-darkcream"
                             >
-                                {   
+                                {
                                     activePublication._id
                                         ? 'Guardar Cambios'
                                         : 'Aceptar'
                                 }
-                            </button>                         
+                            </button>
                         </Form>
                     </div>
                 )}
             </Formik>
 
             {
-                activePublication._id && 
+                activePublication._id &&
                 (
                     <>
                         <hr className='mt-24' />
-                        <AdditionalSection sectionTitle={'Ha sido Adoptado ?'}>
-                            <ChangeAdoption publicationId={params.id} isAdopted={activePublication.is_adopted} />
-                        </AdditionalSection>
                         <AdditionalSection sectionTitle={'Quiere Eliminar la Publicacion ?'}>
                             <DeletePublicationForm publicationId={params.id} />
                         </AdditionalSection>
                     </>
                 )
-                    
+
             }
         </ProfileLayout>
     )
