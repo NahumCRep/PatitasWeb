@@ -17,7 +17,8 @@ const publicationInitialValues = {
         email: ''
     },
     image: '',
-    extra_images: []
+    extra_images: [],
+    is_adopted: false
 }
 
 export const publicationSlice = createSlice({
