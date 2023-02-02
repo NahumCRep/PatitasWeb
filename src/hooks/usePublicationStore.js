@@ -31,6 +31,11 @@ export const usePublicationStore = () => {
         } 
     }
 
+    const startDeletePublication = async (publicationId) => {
+        const res = await patitasApi.delete(`/publication/delete/${publicationId}`);
+        dispatch(onClearActivePublication());
+    }
+
     const startGetPublicationsByUser = async (userId) => {
         const res = await patitasApi.get(`/publication/user/${userId}`);
         dispatch(onSetPublications(res.data.publications))
@@ -88,6 +93,7 @@ export const usePublicationStore = () => {
         publications,
         activePublication,
         startCreatePublication,
+        startDeletePublication,
         startClearActivePublication,
         startGetPublicationsByUser,
         startGetPublicationById, 

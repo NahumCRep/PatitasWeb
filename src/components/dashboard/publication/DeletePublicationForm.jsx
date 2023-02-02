@@ -1,21 +1,33 @@
-import { Form, Formik, Field, ErrorMessage } from 'formik'
-import * as Yup from "yup";
-import { TiWarning } from '../../../utils/reactIcons'
 import React from 'react'
+import * as Yup from "yup";
+import { Form, Formik, Field, ErrorMessage } from 'formik'
+import { TiWarning } from '../../../utils/reactIcons'
+import { usePublicationStore } from '../../../hooks/usePublicationStore';
+
 
 export const DeletePublicationForm = ({ publicationId }) => {
+    const {startDeletePublication} = usePublicationStore()
 
     const validationSchema = Yup.object().shape({
         publication: Yup.string().required('ingrese la ID de la publicacion')
                     .oneOf([publicationId ,null], 'La ID no coincide')
     })
+
+    const handleSubmit = (publicationId) => {
+        startDeletePublication(publicationId)
+    }
+
     return (
         <section className='mt-2'>
             <Formik
                 initialValues={{ publication: '' }}
                 validationSchema={validationSchema}
                 onSubmit={(values, { setSubmitting, resetForm }) => {
-                    console.log(values)
+                    handleSubmit(values.publication);
+                    setTimeout(() => {
+                        setSubmitting(false);
+                        resetForm();
+                    }, 400);
                 }}
             >
                 {({ isSubmitting }) => (
