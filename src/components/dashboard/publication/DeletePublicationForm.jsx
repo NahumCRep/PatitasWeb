@@ -1,12 +1,15 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import * as Yup from "yup";
+import Swal from 'sweetalert2'
 import { Form, Formik, Field, ErrorMessage } from 'formik'
 import { TiWarning } from '../../../utils/reactIcons'
 import { usePublicationStore } from '../../../hooks/usePublicationStore';
 
 
 export const DeletePublicationForm = ({ publicationId }) => {
-    const {startDeletePublication} = usePublicationStore()
+    const {startDeletePublication, startClearActivePublication} = usePublicationStore()
+    const navigate = useNavigate();
 
     const validationSchema = Yup.object().shape({
         publication: Yup.string().required('ingrese la ID de la publicacion')
@@ -14,7 +17,18 @@ export const DeletePublicationForm = ({ publicationId }) => {
     })
 
     const handleSubmit = (publicationId) => {
-        startDeletePublication(publicationId)
+        const resp = startDeletePublication(publicationId)
+        resp.then(res => {
+            let alertType = res.ok ? 'success' : 'error'
+            Swal.fire(
+                'Publicacion!',
+                `${res.message}`,
+                `${alertType}`
+            ).then(function() {
+                startClearActivePublication();
+                navigate('/perfil/publicaciones');
+            });
+        })
     }
 
     return (
@@ -43,7 +57,7 @@ export const DeletePublicationForm = ({ publicationId }) => {
                                 <Field type="text" name="publication" className='formField w-full' />
                                 <ErrorMessage name="publication" component="div" className='text-xs text-red-400' />
                             </div>
-                            <button type='submit' className='bg-white border-2 border-red-500 h-9 w-full md:w-fit md:px-3 rounded-md 
+                            <button disabled={isSubmitting} type='submit' className='bg-white border-2 border-red-500 h-9 w-full md:w-fit md:px-3 rounded-md 
                                 mt-3 md:mt-1 md:ml-2 text-red-500 hover:bg-red-500 hover:text-white transition-colors duration-300'>
                                 Eliminar
                             </button>

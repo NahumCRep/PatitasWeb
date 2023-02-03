@@ -1,22 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2'
+import * as Yup from "yup";
+import { Field, Form, Formik } from 'formik';
 import { useAuthStore, usePublicationStore } from '../../hooks';
 import { ProfileLayout } from '../../components/layouts';
-import { ExtraImagesForm, PetProfilePhoto, SubForm } from '../../components/publication-form';
-// import { districts, provinces } from '../../utils/location';
-import { Field, Form, Formik, FormikProvider } from 'formik';
-import * as Yup from "yup";
 import { initialValues } from '../../utils/formikValues';
+import { PageLoader, Loader } from '../../components/ui';
+import { ExtraImagesForm, PetProfilePhoto, SubForm } from '../../components/publication-form';
 import { DeletePublicationForm, ChangeAdoption, AdditionalSection } from '../../components/dashboard/publication';
 
 export const CreatePublicationPage = () => {
+    const { user } = useAuthStore();
     const [isDog, setIsDog] = useState(true);
-    const [formInitialValues, setFormInitialValues] = useState(initialValues)
-    const { user } = useAuthStore()
+    const [formInitialValues, setFormInitialValues] = useState(initialValues);
     const { activePublication, startGetPublicationById, startCreatePublication,
         startClearActivePublication
     } = usePublicationStore();
-
+    
+    const navigate = useNavigate();
     const params = useParams();
 
     useEffect(() => {
@@ -54,7 +56,11 @@ export const CreatePublicationPage = () => {
         }
     }, [activePublication])
 
-    if (params.id && !activePublication._id) return <h1>Cargando...</h1>
+    // Loader
+    if (params.id && !activePublication._id){
+        return <PageLoader />
+    }  
+        
 
     const handlePetState = () => { setIsDog(!isDog) }
 
@@ -70,7 +76,18 @@ export const CreatePublicationPage = () => {
             formData._id = activePublication._id;
         }
 
-        startCreatePublication(formData);
+        const resp = startCreatePublication(formData);
+        resp.then(res => {
+            let alertType = res.ok ? 'success' : 'error'
+            Swal.fire(
+                'Publicacion!',
+                `${res.message}`,
+                `${alertType}`
+            ).then(function() {
+                startClearActivePublication();
+                navigate('/perfil/publicaciones');
+            });
+        })
     }
 
     const validationFormSchema = Yup.object().shape({
@@ -81,9 +98,6 @@ export const CreatePublicationPage = () => {
         })
     })
 
-
-
-
     return (
         <ProfileLayout layoutTitle={"Publicación"}>
             <Formik
@@ -93,7 +107,6 @@ export const CreatePublicationPage = () => {
                 onSubmit={(values, { setSubmitting, resetForm }) => {
                     handleBeforeSubmit(values);
                     setTimeout(() => {
-                        startClearActivePublication();
                         setSubmitting(false);
                         resetForm();
                     }, 400);
@@ -134,12 +147,18 @@ export const CreatePublicationPage = () => {
                             <button
                                 type="submit"
                                 disabled={isSubmitting}
-                                className="w-full md:w-40 h-11 text-sm my-4 rounded-lg float-right bg-plt-cream text-plt-dark transition-colors duration-500 hover:bg-plt-darkcream"
+                                className="w-full md:w-40 h-11 flex justify-center items-center 
+                                    text-sm my-4 rounded-lg float-right bg-slate-200 text-plt-dark 
+                                    transition-colors duration-500 hover:bg-slate-300"
                             >
                                 {
-                                    activePublication._id
-                                        ? 'Guardar Cambios'
-                                        : 'Aceptar'
+                                    isSubmitting 
+                                    ? <Loader />
+                                    : (
+                                        activePublication._id
+                                            ? 'Guardar Cambios'
+                                            : 'Aceptar'
+                                    )
                                 }
                             </button>
                         </Form>
