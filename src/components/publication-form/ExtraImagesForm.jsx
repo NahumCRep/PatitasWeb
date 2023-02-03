@@ -4,11 +4,10 @@ import { usePublicationStore } from '../../hooks';
 import { ExtraImage } from './ExtraImage';
 
 export const ExtraImagesForm = () => {
-    const { extraImages, activePublication, startReadAllFiles } = usePublicationStore();
+    const { activePublication, startReadAllFiles } = usePublicationStore();
     
 
     const onChangeInputFile = ({target}) => {
-        console.log(target.files)
         startReadAllFiles(target.files)
         
     }
@@ -29,7 +28,7 @@ export const ExtraImagesForm = () => {
                 />
             </div>
             <hr className='mt-2' />
-            <div className='mt-3 w-full grid grid-cols-5 gap-3'>
+            <div className='mt-3 w-full grid grid-cols-2  md:grid-cols-100x300 lg:grid-cols-5 gap-3'>
                 {
                     activePublication.extra_images && activePublication.extra_images.map((extraImage, index) => (
                         <ExtraImage key={extraImage + index} imageSrc={extraImage} />
