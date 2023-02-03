@@ -21,19 +21,19 @@ export const usePublicationStore = () => {
 
     const startCreatePublication = async (publication) => {
         if(publication._id){
-            const res = await patitasApi.put(`/publication/update/${publication._id}`, publication)
-            console.log('publication resp', res);
-            dispatch(onClearActivePublication())
-            navigate('/perfil/publicaciones')
+            const res = await patitasApi.put(`/publication/update/${publication._id}`, publication);
+            return res.data;
         }else{
             const res = await patitasApi.post('/publication/new', publication);
-            console.log('publication resp', res);
+            return res.data;
         } 
     }
 
     const startDeletePublication = async (publicationId) => {
         const res = await patitasApi.delete(`/publication/delete/${publicationId}`);
-        dispatch(onClearActivePublication());
+        return res.data;
+        // dispatch(onClearActivePublication());
+        // navigate('/perfil/publicaciones')
     }
 
     const startGetPublicationsByUser = async (userId) => {
