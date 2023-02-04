@@ -18,7 +18,7 @@ export const CreatePublicationForm = () => {
         extraImages,
         activePublication, 
         startCreatePublication, 
-        startClearPreviewImage 
+        // startClearPreviewImage 
     } = usePublicationStore();
 
     console.log(activePublication);
@@ -76,7 +76,7 @@ export const CreatePublicationForm = () => {
             onSubmit={(values, { setSubmitting, resetForm }) => {
                 handleBeforeSubmit(values);
                 setTimeout(() => {
-                    startClearPreviewImage();
+                    // startClearPreviewImage();
                     setSubmitting(false);
                     resetForm();
                 }, 400);

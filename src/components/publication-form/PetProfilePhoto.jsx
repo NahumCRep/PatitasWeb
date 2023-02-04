@@ -4,11 +4,10 @@ import { DefaultImage } from './DefaultImage';
 import { BsFillInfoCircleFill } from '../../utils/reactIcons'
 
 export const PetProfilePhoto = ({isDog}) => {
-  const { image, activePublication, startPreviewImgFile, startClearPreviewImage } = usePublicationStore();
+  const { activePublication, startPreviewImgFile } = usePublicationStore();
   const inputFileRef = useRef(null);
 
   useEffect(() => {
-    startClearPreviewImage();
     inputFileRef.current.value = null;
   },[isDog])
 
