@@ -24,25 +24,11 @@ const publicationInitialValues = {
 export const publicationSlice = createSlice({
     name: 'publication',
     initialState: {
-        image: '',
         activePublication: publicationInitialValues,
-        extraImages: [],
-        publications: []
+        publications: [],
+        publicationsData: {}
     },
     reducers: {
-        onPreviweImage: (state, { payload }) => {
-            state.image = payload;
-        },
-        onClearPreviewImage: (state) => {
-            state.image = '';
-            state.extraImages = [];
-        },
-        onPreviewExtraImages: (state, { payload }) => {
-            state.extraImages.push(...payload);
-        },
-        onDeleteExtraImage: (state, { payload }) => {
-            state.activePublication.extra_images = state.activePublication.extra_images.filter(extra => extra !== payload);
-        },
         onSetPublications: (state, { payload }) => {
             state.publications = payload;
         },
@@ -57,19 +43,22 @@ export const publicationSlice = createSlice({
         },
         onSetPublicationExtraImages: (state, { payload }) => {
             state.activePublication.extra_images.push(...payload);
+        },
+        onDeleteExtraImage: (state, { payload }) => {
+            state.activePublication.extra_images = state.activePublication.extra_images.filter(extra => extra !== payload);
+        },
+        onSetPublicationsData: (state, { payload }) => {
+            state.publicationsData = payload;
         }
     }
 })
 
 export const {
-    onPreviweImage,
-    onClearPreviewImage,
-    onPreviewExtraImages,
-    onDeleteExtraImage,
-
     onSetPublications,
     onSetActivePublication,
     onClearActivePublication,
     onSetProfilePetPhoto,
-    onSetPublicationExtraImages
+    onSetPublicationExtraImages,
+    onDeleteExtraImage,
+    onSetPublicationsData
 } = publicationSlice.actions;

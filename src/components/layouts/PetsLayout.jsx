@@ -48,7 +48,6 @@ export const PetsLayout = ({ pet, baseLinkPath, tlwColor, children }) => {
             </Link>
           </div>
           <ul className="mt-2 py-3 text-plt-white md:py-0 md:text-plt-dark">
-            {console.log('layout',provinces)}
             {provinces.map(province => (
               <ProvinceBtn
                 key={province}

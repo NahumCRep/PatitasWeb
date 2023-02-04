@@ -1,24 +1,26 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from 'react-router-dom'
 import patitasApi from "../api/patitasApi";
 import { readFile } from "../helpers";
 import { 
-    onPreviweImage, 
-    onClearPreviewImage, 
-    onPreviewExtraImages,
     onDeleteExtraImage,
     onSetPublications,
     onSetActivePublication,
     onClearActivePublication,
     onSetProfilePetPhoto,
-    onSetPublicationExtraImages
+    onSetPublicationExtraImages,
+    onSetPublicationsData
 } from '../store/pet';
 
 export const usePublicationStore = () => {
-    const navigate = useNavigate();
-    const { image, extraImages, publications, activePublication } = useSelector(state => state.publication);
+    const { 
+        publications, 
+        activePublication, 
+        publicationsData 
+    } = useSelector(state => state.publication);
     const dispatch = useDispatch();
 
+
+    // Create | Update
     const startCreatePublication = async (publication) => {
         if(publication._id){
             const res = await patitasApi.put(`/publication/update/${publication._id}`, publication);
@@ -29,13 +31,22 @@ export const usePublicationStore = () => {
         } 
     }
 
+    // Delete or Clear State
     const startDeletePublication = async (publicationId) => {
         const res = await patitasApi.delete(`/publication/delete/${publicationId}`);
         return res.data;
-        // dispatch(onClearActivePublication());
-        // navigate('/perfil/publicaciones')
+    }
+    
+    const startDeleteExtraImage = (image) => {
+        if(!image) return;
+        dispatch(onDeleteExtraImage(image));
     }
 
+    const startClearActivePublication = () => {
+        dispatch(onClearActivePublication())
+    }
+
+    // Get Publications
     const startGetPublicationsByUser = async (userId) => {
         const res = await patitasApi.get(`/publication/user/${userId}`);
         dispatch(onSetPublications(res.data.publications))
@@ -47,19 +58,27 @@ export const usePublicationStore = () => {
         dispatch(onSetActivePublication(res.data.publication));
     }
 
-    const startClearActivePublication = () => {
-        dispatch(onClearActivePublication())
-    }
+    const startGetPublications = async ({petType, page = 0, province = ''}) => {
+        let query = `/publication/type/${petType}`;
 
+        if(province !== ''){
+            query = query + `/province/${province}`
+        }
+
+        if(page > 0){
+            query = query + `/page/${page}`
+        }
+
+        const res = await patitasApi.get(query);
+        dispatch(onSetPublicationsData(res.data));
+    }
+    
+    // Files (images)
     const startPreviewImgFile = async (file) => {
         if(!file) return;
 
         const profilePhoto = await readFile(file)
         dispatch(onSetProfilePetPhoto(profilePhoto))
-    }
-
-    const startClearPreviewImage = () => {
-        dispatch(onClearPreviewImage())
     }
 
     const startReadAllFiles = async (files) => {
@@ -72,35 +91,20 @@ export const usePublicationStore = () => {
         dispatch(onSetPublicationExtraImages(extraImages));    
     }
 
-    const startUploadingPetImage = async (imageFile) => {
-        try {
-            const {data} = await patitasApi.post('/pet/image', {"file": imageFile});
-            console.log(data);
-
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-    const startDeleteExtraImage = (image) => {
-        if(!image) return;
-        dispatch(onDeleteExtraImage(image));
-    }
-
     return {
-        image,
-        extraImages,
+        // Attributes
         publications,
         activePublication,
+        publicationsData,
+        // Methods
         startCreatePublication,
         startDeletePublication,
-        startClearActivePublication,
-        startGetPublicationsByUser,
         startGetPublicationById, 
-        startUploadingPetImage,
+        startGetPublicationsByUser,
+        startGetPublications,
+        startClearActivePublication,
+        startDeleteExtraImage,
         startPreviewImgFile,
-        startClearPreviewImage,
-        startReadAllFiles,
-        startDeleteExtraImage
+        startReadAllFiles
     }
 }

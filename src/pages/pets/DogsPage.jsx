@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom';
+import { usePublicationStore } from '../../hooks';
 // ** Icons
 import { FaDog } from 'react-icons/fa';
 // ** Components
@@ -9,9 +10,15 @@ import { pets } from '../../localData/testData';
 
 export const DogsPage = () => {
   const {province, page} = useParams();
+  const { startGetPublications, publications, publicationsData } = usePublicationStore();
 
   useEffect(() => {
     console.log({province, page});
+    startGetPublications({
+      petType:'dog', 
+      province, 
+      page
+    })
   }, [province, page])
 
   return (
@@ -27,9 +34,11 @@ export const DogsPage = () => {
       </div>
 
       <PetGrid>
-        {pets.map((pet) => (
-              <PetCard key={pet.id} pet={pet} />
-        ))}
+        {
+          publicationsData.docs && 
+            publicationsData.docs.map((publication) => (
+              <PetCard key={publication._id} pet={publication} />
+            ))}
       </PetGrid>
 
       <Pagination />

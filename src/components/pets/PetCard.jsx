@@ -15,7 +15,7 @@ export const PetCard = ({ pet }) => {
     <div className={`h-60 relative font-secondary font-semibold bg-white shadow-lg rounded-t-md overflow-hidden transition-colors duration-500`}>
 
       <figure className="w-full h-[80%] ">
-        <img src={dogcard} alt="dog" className="w-full h-full rounded-t-md object-cover" />
+        <img src={pet.image} alt="dog" className="w-full h-full rounded-t-md object-cover" />
       </figure>
 
       <div className="w-full h-[20%] px-2 flex items-center justify-between">
@@ -30,7 +30,7 @@ export const PetCard = ({ pet }) => {
           </p>
           <p className="w-[95%] font-medium text-[0.7rem] text-slate-400 flex items-center justify-start text-ellipsis truncate">
             <MdLocationOn />
-            {pet.location}
+            {pet.location.province}
           </p>
         </div>
 
