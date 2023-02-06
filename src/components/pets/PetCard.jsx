@@ -15,13 +15,15 @@ export const PetCard = ({ pet }) => {
     <div className={`h-60 relative font-secondary font-semibold bg-white shadow-lg rounded-t-md overflow-hidden transition-colors duration-500`}>
 
       <figure className="w-full h-[80%] ">
-        <img src={pet.image} alt="dog" className="w-full h-full rounded-t-md object-cover" />
+        <Link to={`/${baseUrl}/informacion/${pet._id}`}>
+          <img src={pet.image} alt="dog" className="w-full h-full rounded-t-md object-cover" />
+        </Link>
       </figure>
 
       <div className="w-full h-[20%] px-2 flex items-center justify-between">
         <div className="w-[80%]">
           <p className="flex items-center gap-2 text-base">
-            <Link to={`/${baseUrl}/informacion/${pet.id}`}>{pet.name}</Link>
+            {pet.name}
             {
               pet.genre === 'macho'
                 ? <TbGenderMale color='#185ADB' />
