@@ -1,25 +1,44 @@
-import React, { useEffect } from 'react'
-import { useParams } from 'react-router-dom';
+import { useEffect } from 'react'
+import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import { usePublicationStore } from '../../hooks';
 // ** Icons
 import { FaDog } from 'react-icons/fa';
 // ** Components
 import { PetsLayout } from '../../components/layouts';
 import { Pagination, PetCard, PetGrid } from '../../components/pets';
-import { pets } from '../../localData/testData';
 
 export const DogsPage = () => {
-  const {province, page} = useParams();
-  const { startGetPublications, publications, publicationsData } = usePublicationStore();
+  const {province, page} = useParams()
+  const { startGetPublications, publicationsData } = usePublicationStore()
+  const location = useLocation()
+  const navigate = useNavigate()
 
   useEffect(() => {
-    console.log({province, page});
     startGetPublications({
       petType:'dog', 
       province, 
       page
     })
   }, [province, page])
+
+  const changePage = (pageNumber) => {
+    const path = location.pathname
+    let goToPage = `${path}/page/${pageNumber}`
+    
+    if(path.includes('/page/')){
+      goToPage = path.replace(/(\/page\/\d)/, `/page/${pageNumber}`)
+    }
+
+    navigate(goToPage)
+  }
+
+  const nextPage = (currentPageNumber) => {
+    changePage(currentPageNumber + 1)
+  }
+
+  const prevPage = (currentPageNumber) => {
+    changePage(currentPageNumber - 1)
+  }
 
   return (
     <PetsLayout pet={'dog'} baseLinkPath={'perros'} tlwColor={'plt-blue'}>
@@ -38,10 +57,21 @@ export const DogsPage = () => {
           publicationsData.docs && 
             publicationsData.docs.map((publication) => (
               <PetCard key={publication._id} pet={publication} />
-            ))}
+            ))
+        }
       </PetGrid>
 
-      <Pagination />
+      {
+        publicationsData.page &&
+          <Pagination 
+            totalPages  = {publicationsData.totalPages} 
+            currentPage = {publicationsData.page}
+            limit       = {publicationsData.limit}
+            changePage  = {changePage}
+            nextPage    = {nextPage}
+            prevPage    = {prevPage} 
+          />
+      }
       
     </PetsLayout>
   )
