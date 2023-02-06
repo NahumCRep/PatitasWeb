@@ -21,7 +21,7 @@ export const PetsLayout = ({ pet, baseLinkPath, tlwColor, children }) => {
     <Layout>
       <div className={`w-full h-14 bg-${tlwColor} ${pet === 'dog' ? 'bg-blue-paws' : 'bg-cream-paws'} bg-repeat`}></div>
 
-      <div className="w-full h-auto min-h-screen font-secondary flex relative md:px-20">
+      <div className="w-full h-auto min-h-screen font-secondary flex relative md:px-20 md:gap-2">
         <button
           className="absolute top-0 right-4 h-16 aspect-square text-slate-400 flex items-center justify-center md:hidden"
           onClick={handleOptionsOpen}
@@ -34,7 +34,7 @@ export const PetsLayout = ({ pet, baseLinkPath, tlwColor, children }) => {
         </button>
         <div className={`absolute top-16 w-full overflow-hidden z-20 bg-plt-dark transition-height duration-700
                         ${isOptionsOpen ? 'h-screen' : 'h-0'} 
-                        md:relative md:top-0 md:w-[30%] md:h-auto md:bg-white`}
+                        md:relative md:top-0 md:w-[20%] md:h-auto md:bg-white`}
         >
           <div className={`w-full pl-7 pr-4 h-16 flex items-center justify-between border-b-2 border-b-${tlwColor} text-white
                         md:px-3 md:text-plt-dark md:border-slate-200`}
@@ -58,7 +58,7 @@ export const PetsLayout = ({ pet, baseLinkPath, tlwColor, children }) => {
           </ul>
         </div>
 
-        <div className="flex-grow h-auto pb-2">
+        <div className="md:w-full h-auto pb-2">
           {children}
         </div>
       </div>
