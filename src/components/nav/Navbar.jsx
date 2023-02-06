@@ -26,7 +26,7 @@ export const Navbar = () => {
   }
 
   return (
-    <nav className='w-full h-[80px] shadow-xl flex items-center px-4 fixed z-50 bg-white md:h-[60px] md:justify-between'>
+    <nav className='w-full h-[80px] shadow-xl flex items-center px-4 fixed z-50 bg-white md:px-20 md:h-[60px] md:justify-between'>
       {/* Logo */}
       <NavLink
         to={'/'}
