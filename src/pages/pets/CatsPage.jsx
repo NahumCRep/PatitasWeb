@@ -57,7 +57,7 @@ export const CatsPage = () => {
             ? (publicationsData.docs.map((publication) => (
               <PetCard key={publication._id} pet={publication} />
               )))
-            : <p className='w-full bg-slate-400 text-slate-300 text-center'>No hay publicaciones</p>
+            : <p className='w-full col-span-full text-slate-300 text-center'>No hay publicaciones</p>
         }
       </PetGrid>
       

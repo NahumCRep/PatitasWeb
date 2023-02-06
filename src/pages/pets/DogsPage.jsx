@@ -54,10 +54,11 @@ export const DogsPage = () => {
 
       <PetGrid>
         {
-          publicationsData.docs && 
-            publicationsData.docs.map((publication) => (
+          publicationsData.docs && publicationsData.docs.length > 0 
+            ? (publicationsData.docs.map((publication) => (
               <PetCard key={publication._id} pet={publication} />
-            ))
+            )))
+            : <p className='w-full block col-span-full text-slate-300 text-center'>No hay publicaciones</p>
         }
       </PetGrid>
 
