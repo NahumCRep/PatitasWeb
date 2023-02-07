@@ -1,39 +1,20 @@
-import { useState, useEffect } from 'react';
-import { ErrorMessage, Field, useFormikContext } from 'formik';
+import { useEffect } from 'react';
+import { ErrorMessage, useFormikContext } from 'formik';
 import { MdEmail, RiWhatsappFill } from '../../utils/reactIcons';
 import { provinces, districts } from '../../utils/location';
 
 import { InputField, RadioField, SelectField, ContactField } from '../form-fields'; 
 
-const ageWithoutNumberOptions = ['anciano', 'adulto', 'joven', 'cachorro'];
-const ageWithNumberOptions = ['semanas', 'meses', 'años'];
+const ageOptions = ['anciano', 'adulto', 'joven', 'cachorro'];
 
 export const SubForm = () => {
-    const [isSpecificAge, setIsSpecificAge] = useState(false);
     const { values } = useFormikContext();
-
-    const handleToggleAge = (e) => {
-        e.target.checked
-            ? setIsSpecificAge(true)
-            : setIsSpecificAge(false)
-    }
-
     const selectDistricts = (province) => (districts[province])
-
-    useEffect(() => {
-        console.log(values)
-    }, [values])
 
     useEffect(() => {
         const provinceDistricts = selectDistricts(values.location.province);
         values.location.district = provinceDistricts[0];
     },[values.location.province])
-
-    useEffect(() => {
-        isSpecificAge
-            ? values.age = values.ageNumber + ' ' + values.ageString
-            : values.age = values.ageString 
-    }, [values.ageNumber, values.ageString])
 
     return (
         <div className="w-full h-auto mt-2 md:w-[60%] md:mt-0 font-secondary flex flex-col gap-5 md:grid md:grid-cols-2 ">
@@ -42,25 +23,10 @@ export const SubForm = () => {
 
             {/* Age */}
             <div className="h-16">
-                <div className="flex gap-2 items-center">
-                    <label htmlFor="age">Edad</label>
-                    <p className="text-slate-400"> | edad especifica?</p>
-                    <input type="checkbox" onChange={handleToggleAge} className="cursor-pointer" />
-                </div>
-
+                <label htmlFor="age">Edad</label>
                 <div>
-                    {
-                        isSpecificAge
-                            ? (
-                                <div className="grid grid-cols-2 gap-3">
-                                    <Field type="number" name="ageNumber" className="formField" />
-                                    <SelectField name={'ageString'} options={ageWithNumberOptions} />
-                                </div>
-                            )
-                            : <SelectField name={'ageString'} options={ageWithoutNumberOptions} />
-
-                    }
-                    <ErrorMessage name="ageString" component="div" className="text-red-500 text-sm" />
+                    <SelectField name={'age'} options={ageOptions} />
+                    <ErrorMessage name="age" component="div" className="text-red-500 text-sm" />
                 </div>
             </div>
 
