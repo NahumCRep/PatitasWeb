@@ -33,9 +33,7 @@ export const CreatePublicationPage = () => {
             name: activePublication?.name,
             breed: activePublication?.breed,
             genre: activePublication?.genre,
-            age: '',
-            ageNumber: activePublication?.ageNumber,
-            ageString: activePublication?.ageString,
+            age: activePublication?.age,
             location: {
                 province: activePublication?.location.province,
                 district: activePublication?.location.district
@@ -88,11 +86,13 @@ export const CreatePublicationPage = () => {
                 navigate('/perfil/publicaciones');
             });
         })
+
+        return resp
     }
 
     const validationFormSchema = Yup.object().shape({
         name: Yup.string().required('el nombre es requerido'),
-        ageString: Yup.string().required('seleccione un valor'),
+        age: Yup.string().required('seleccione una edad'),
         contact: Yup.object().shape({
             whatsapp: Yup.string().matches(/[0-9]/, 'ingrese solamente numeros').required('ingrese un numero de contacto')
         })
@@ -105,11 +105,15 @@ export const CreatePublicationPage = () => {
                 initialValues={formInitialValues}
                 validationSchema={validationFormSchema}
                 onSubmit={(values, { setSubmitting, resetForm }) => {
-                    handleBeforeSubmit(values);
-                    setTimeout(() => {
-                        setSubmitting(false);
-                        resetForm();
-                    }, 400);
+                    const result = handleBeforeSubmit(values);
+                    result.then(res => {
+                        if(res.ok){
+                            setSubmitting(false);
+                            resetForm();
+                        }else {
+                            setSubmitting(false);
+                        }
+                    })
                 }}
             >
                 {({ isSubmitting }) => (
