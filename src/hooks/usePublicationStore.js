@@ -8,7 +8,8 @@ import {
     onClearActivePublication,
     onSetProfilePetPhoto,
     onSetPublicationExtraImages,
-    onSetPublicationsData
+    onSetPublicationsData,
+    onHandleLike
 } from '../store/pet';
 
 export const usePublicationStore = () => {
@@ -52,6 +53,12 @@ export const usePublicationStore = () => {
         dispatch(onSetPublications(res.data.publications))
     }
 
+    const startGetPublicationsLikedByUser = async (userId) => {
+        const res = await patitasApi.get(`/publication/user/${userId}/likes`);
+        console.log(res)
+        dispatch(onSetPublicationsData(res.data));
+    }
+
     const startGetPublicationById = async (publicationId) => {
         dispatch(onClearActivePublication());
         const res = await patitasApi.get(`/publication/${publicationId}`);
@@ -91,6 +98,16 @@ export const usePublicationStore = () => {
         dispatch(onSetPublicationExtraImages(extraImages));    
     }
 
+    const startHandleLike = async (publicationId, userId) => {
+        const resp = await patitasApi.put(
+            `/publication/${publicationId}/like`, 
+            {userId: userId}
+        )
+        if(resp.data.ok){
+            dispatch(onHandleLike({publicationId, userId}))
+        }
+    }
+
     return {
         // Attributes
         publications,
@@ -101,10 +118,12 @@ export const usePublicationStore = () => {
         startDeletePublication,
         startGetPublicationById, 
         startGetPublicationsByUser,
+        startGetPublicationsLikedByUser, 
         startGetPublications,
         startClearActivePublication,
         startDeleteExtraImage,
         startPreviewImgFile,
-        startReadAllFiles
+        startReadAllFiles,
+        startHandleLike
     }
 }

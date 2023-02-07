@@ -1,15 +1,41 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import Swal from 'sweetalert2'
 import { Link } from 'react-router-dom';
+import { usePublicationStore, useAuthStore } from '../../hooks';
 // ** Icons
-// import { TbGenderMale, TbGenderFemale } from 'react-icons/tb';
-// import {AiOutlineHeart, AiFillHeart} from 'react-icons/ai';
-// import { MdLocationOn } from 'react-icons/md';
-import { TbGenderMale, TbGenderFemale, AiOutlineHeart, AiFillHeart, MdLocationOn } from '../../utils/reactIcons'
-import dogcard from '../../assets/images/dogcard.jpg';
+import { 
+  TbGenderMale, TbGenderFemale, 
+  AiOutlineHeart, AiFillHeart, 
+  MdLocationOn 
+} from '../../utils/reactIcons'
+
 
 
 export const PetCard = ({ pet }) => {
+  const [isLiked, setIsLiked] = useState(false)
+  const { user } = useAuthStore()
+  const { startHandleLike } = usePublicationStore()
   const baseUrl = pet.pet === 'perro' ? 'perros' : 'gatos';
+
+  const handlePublicationLike = () => {
+    if(!user.uid){
+      Swal.fire(
+        'Atencion!',
+        `Inicie sesion para agregar a favoritos`,
+        `info`
+      )
+    }else{
+      startHandleLike(pet._id, user.uid)
+    }
+  }
+
+  useEffect(() => {
+    if(pet.likes.includes(user.uid)){
+      setIsLiked(true)
+    }else{
+      setIsLiked(false)
+    }
+  }, [pet.likes])
 
   return (
     <div className={`h-60 relative font-secondary font-semibold bg-white shadow-lg rounded-t-md overflow-hidden transition-colors duration-500`}>
@@ -36,7 +62,12 @@ export const PetCard = ({ pet }) => {
           </p>
         </div>
 
-        <button title={'agregar a favoritos'} className=" text-slate-400 transitio duration-200 hover:text-slate-500">
+        <button
+          onClick={handlePublicationLike} 
+          title={'agregar a favoritos'} 
+          className={`:transition-colors duration-200 lg:hover:text-slate-500
+                ${isLiked ? 'text-red-500':'text-slate-400'}`}
+        >
           <AiFillHeart size={27} />
         </button>
       </div>

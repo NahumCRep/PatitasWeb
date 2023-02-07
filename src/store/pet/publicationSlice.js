@@ -5,8 +5,7 @@ const publicationInitialValues = {
     name: '',
     breed: '',
     genre: 'macho',
-    ageNumber: 0,
-    ageString: '',
+    age: '',
     location: {
         province: provinces[0],
         district: districts[provinces[0]][0]
@@ -18,7 +17,8 @@ const publicationInitialValues = {
     },
     image: '',
     extra_images: [],
-    is_adopted: false
+    is_adopted: false,
+    likes: []
 }
 
 export const publicationSlice = createSlice({
@@ -49,6 +49,19 @@ export const publicationSlice = createSlice({
         },
         onSetPublicationsData: (state, { payload }) => {
             state.publicationsData = payload;
+        },
+        onHandleLike: (state, { payload }) => {
+            const {publicationId, userId} = payload
+            state.publicationsData.docs.forEach(publication => {
+                if(publication._id === publicationId){
+                    if(!publication.likes.includes(userId)){
+                        publication.likes.push(userId)
+                    }else{
+                        const newLikes = publication.likes.filter(like => !like === userId)
+                        publication.likes = newLikes
+                    }
+                }
+            })
         }
     }
 })
@@ -60,5 +73,6 @@ export const {
     onSetProfilePetPhoto,
     onSetPublicationExtraImages,
     onDeleteExtraImage,
-    onSetPublicationsData
+    onSetPublicationsData,
+    onHandleLike
 } = publicationSlice.actions;
