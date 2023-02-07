@@ -4,7 +4,7 @@ import { RiHomeHeartFill } from '../../utils/reactIcons'
 
 export const PublicationCard = ({ publication }) => {
   return (
-    <div className='bg-slate-100 p-1 shadow-md border-[1px] relative'>
+    <div className='bg-slate-100 h-[180px] p-1 shadow-md border-[1px] relative'>
       {
         publication.is_adopted && (
           <div 
