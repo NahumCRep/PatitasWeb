@@ -25,7 +25,7 @@ export const DescriptionPage = () => {
         <Layout>
             <article className="min-h-screen font-secondary px-4 md:px-20">
                 <div className="flex flex-col md:flex-row">
-                    <figure className="w-full py-6 md:w-1/2">
+                    <figure className="w-full max-h-96 pt-6 md:w-1/2">
                         <img 
                             src={activePublication.image} 
                             alt={`
@@ -33,11 +33,11 @@ export const DescriptionPage = () => {
                                 ${activePublication.pet_type === 'dog' ? 'perro' : 'gato'}
                                 llamado ${activePublication.name}
                             `}
-                            className="rounded-lg" 
+                            className="rounded-lg w-full h-full object-cover" 
                         />
                     </figure>
 
-                    <div className="w-full flex flex-col justify-between md:w-1/2 md:p-6">
+                    <div className="w-full flex flex-col justify-between mt-5 md:mt-0 md:w-1/2 md:p-6">
                         <div>
                             <h1 className="text-3xl">Información</h1>
                             <hr />
@@ -90,7 +90,7 @@ export const DescriptionPage = () => {
                             </div>
                         </div>
 
-                        <div className="text-plt-dark mt-9 md:mt-0">
+                        <div className="text-plt-dark mt-9 md:mt-3">
                             <h2 className="text-xl font-semibold text-plt-dark">
                                 Descripción adicional
                             </h2>
