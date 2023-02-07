@@ -23,7 +23,7 @@ export const DescriptionPage = () => {
 
     return (
         <Layout>
-            <article className="min-h-screen font-secondary px-4 md:px-20">
+            <article className="min-h-screen mb-10 font-secondary px-4 md:px-20">
                 <div className="flex flex-col md:flex-row">
                     <figure className="w-full max-h-96 pt-6 md:w-1/2">
                         <img 
