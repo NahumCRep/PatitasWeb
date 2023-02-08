@@ -16,6 +16,20 @@
     .grayButton{
         @apply bg-slate-200 text-slate-400 hover:bg-slate-300;
     }
+
+    .photoholders {
+        @apply before:content-[''] before:w-0 before:h-0 before:z-10
+        before:absolute before:-top-4 before:-left-2 
+        before:border-t-[30px] before:border-r-[30px] before:border-l-[30px] before:border-b-[30px]
+        before:border-t-plt-cream before:border-l-plt-cream 
+        before:border-r-transparent before:border-b-transparent
+
+        after:content-[''] after:w-0 after:h-0 after:z-10
+        after:absolute after:-bottom-4 after:-right-2 
+        after:border-t-[30px] after:border-r-[30px] after:border-l-[30px] after:border-b-[30px]
+        after:border-t-transparent after:border-l-transparent
+        after:border-r-plt-blue after:border-b-plt-blue 
+    }
     
 }
 
