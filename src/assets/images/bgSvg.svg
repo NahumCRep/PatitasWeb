@@ -1,0 +1,31 @@
+<svg width="1360" height="768" viewBox="0 0 1360 768" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_304_2)">
+<ellipse cx="1335" cy="591.5" rx="113" ry="108.5" fill="#FFC947" fill-opacity="0.3"/>
+<path d="M1513 596.5C1513 684.849 1434.19 758 1335 758C1235.81 758 1157 684.849 1157 596.5C1157 508.151 1235.81 435 1335 435C1434.19 435 1513 508.151 1513 596.5Z" stroke="#FFC947" stroke-opacity="0.3" stroke-width="20"/>
+<ellipse cx="-221" cy="397" rx="397" ry="412" stroke="#185ADB" stroke-opacity="0.2" stroke-width="20" stroke-linejoin="round" stroke-dasharray="40 40"/>
+<ellipse cx="1048.5" cy="287" rx="98.5" ry="97" fill="#185ADB" fill-opacity="0.2"/>
+<ellipse cx="295.5" cy="721.5" rx="41.5" ry="40.5" fill="#185ADB" fill-opacity="0.2"/>
+<ellipse cx="182.5" cy="681.5" rx="41.5" ry="40.5" fill="#FFC947" fill-opacity="0.3"/>
+<ellipse cx="23.5" cy="395.5" rx="117.5" ry="120.5" fill="#FFC947" fill-opacity="0.3"/>
+<ellipse cx="627" cy="219.5" rx="184" ry="177.5" fill="#FFC947" fill-opacity="0.3"/>
+<ellipse cx="1004.5" cy="587" rx="72.5" ry="71" stroke="#FFC947" stroke-opacity="0.3" stroke-width="10" stroke-dasharray="20 20"/>
+<ellipse cx="1235.5" cy="99" rx="72.5" ry="71" stroke="#185ADB" stroke-opacity="0.2" stroke-width="10" stroke-dasharray="20 20"/>
+<ellipse cx="274.5" cy="467.342" rx="31.5" ry="30" fill="#185ADB" fill-opacity="0.2"/>
+<ellipse cx="300.674" cy="459.75" rx="16" ry="23" transform="rotate(-22.8435 300.674 459.75)" fill="#185ADB" fill-opacity="0.2"/>
+<ellipse cx="248.111" cy="459.911" rx="16" ry="23" transform="rotate(24.5548 248.111 459.911)" fill="#185ADB" fill-opacity="0.2"/>
+<ellipse cx="274.5" cy="473.842" rx="7.5" ry="6.5" fill="#185ADB" fill-opacity="0.2"/>
+<path d="M275.311 480.342C274.478 484.176 274.811 491.042 282.811 487.842" stroke="#185ADB" stroke-opacity="0.2"/>
+<path d="M267 487.842C270.833 488.676 277.7 488.342 274.5 480.342" stroke="#185ADB" stroke-opacity="0.2"/>
+<ellipse cx="368.5" cy="467.342" rx="31.5" ry="30" fill="#FFC947" fill-opacity="0.3"/>
+<path d="M334.338 435.236L358.259 444.932L340.353 460.337L334.338 435.236Z" fill="#FFC947" fill-opacity="0.3"/>
+<path d="M403.566 434.671L396.003 460.955L377.931 444.204L403.566 434.671Z" fill="#FFC947" fill-opacity="0.3"/>
+<path d="M368 480.342L361.072 469.842H374.928L368 480.342Z" fill="#FFC947" fill-opacity="0.3"/>
+<line x1="368.32" y1="480.726" x2="362.32" y2="485.726" stroke="#FFC947" stroke-opacity="0.3"/>
+<line x1="367.697" y1="480.649" x2="373.033" y2="486.352" stroke="#FFC947" stroke-opacity="0.3"/>
+</g>
+<defs>
+<clipPath id="clip0_304_2">
+<rect width="1360" height="768" fill="white"/>
+</clipPath>
+</defs>
+</svg>

@@ -23,7 +23,9 @@ module.exports = {
         'blue-paws': "url('assets/icons/paws-blue.svg')",
         'cream-paws': "url('assets/icons/paws-cream.svg')",
         'svg-bg': "url('assets/images/backgroundSvg.svg')",
-        'svg-bg-hd': "url('assets/images/headerBgSvg.svg')"
+        'svg-bg-hd': "url('assets/images/headerBgSvg.svg')",
+        'svg-bg-x': "url('assets/images/bgSvg1.svg')",
+        'svg-pin': "url('assets/images/pin.svg')"
       },
       transitionProperty: {
         'width': 'width',
@@ -33,6 +35,9 @@ module.exports = {
         '3xl': '1px 1px 1px rgba(0,0,0,0.50)',
         'layers': ['1px 1px 0 #808B96',
         '1px 2px 0 #D0D3D4']
+      },
+      boxShadow: {
+        'cust': '2px 2px 10px  rgba(0,0,0,0.50)'
       },
       outlineWidth:{
         '50': '50px'
