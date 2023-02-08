@@ -21,7 +21,7 @@ export const AdditionalImages = ({ images }) => {
             case 'prev':
                 const prevIdx = currentImageIndex - 1 
                 if(prevIdx >= 0){
-                   setSelectedIndexImage(prevIdx)
+                    setSelectedIndexImage(prevIdx)
                 }else if(prevIdx < 0){
                     setSelectedIndexImage(range)
                 }
@@ -44,13 +44,19 @@ export const AdditionalImages = ({ images }) => {
             {
                 images &&
                 images.map((image, index) => (
-                    <img
+                    <figure 
                         key={image}
-                        src={image}
-                        alt={`imagen adicional ${index} de la mascota`}
-                        className='aspect-square object-cover cursor-pointer'
-                        onClick={() => handleImage(index)}
-                    />
+                        className='relative border-[10px] border-white shadow-cust cursor-pointer'
+                    >
+                        <div className='absolute z-10 w-10 h-10 -top-4 left-1/2 -translate-x-1/2 bg-svg-pin 
+                            bg-no-repeat bg-contain'></div>
+                        <img
+                            src={image}
+                            alt={`imagen adicional ${index} de la mascota`}
+                            className='aspect-square object-cover '
+                            onClick={() => handleImage(index)}
+                        />
+                    </figure>
                 ))
             }
 
