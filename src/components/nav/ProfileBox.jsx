@@ -27,7 +27,7 @@ export const ProfileBox = () => {
                 </button>
             </div>
 
-            <ul className={`w-full transition-height duration-700 ${openProfileBox ? 'h-24' : 'h-0'} overflow-hidden 
+            <ul className={`w-full transition-height duration-500 ${openProfileBox ? 'h-24' : 'h-0'} overflow-hidden 
                         md:absolute md:top-[70px] md:bg-white md:text-plt-dark md:shadow-2xl md:scale-100`}
             >
                 <NavSubLi title={'Mi Perfil'} url={'/perfil'} sublink />

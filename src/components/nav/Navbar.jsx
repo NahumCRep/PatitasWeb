@@ -40,7 +40,7 @@ export const Navbar = () => {
       <div 
         className={`
         absolute right-0 top-[80px] z-50 h-[100vh] bg-plt-dark
-        transition-width duration-1000  ${isNavOpen ? 'w-[60vw]' : 'w-0'} overflow-hidden 
+        transition-width duration-500  ${isNavOpen ? 'w-[60vw]' : 'w-0'} overflow-hidden 
         md:relative md:w-auto md:h-[70px] md:top-0 md:bg-transparent md:overflow-visible
         `}
       >
@@ -56,7 +56,7 @@ export const Navbar = () => {
                 {isAdoptOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}
               </button>
 
-              <ul className={`w-full transition-height duration-700 ${isAdoptOpen ? 'h-24':'h-0'} overflow-hidden 
+              <ul className={`w-full transition-height duration-500 ${isAdoptOpen ? 'h-24':'h-0'} overflow-hidden 
                               md:absolute md:top-[70px] md:bg-white md:text-plt-dark md:shadow-2xl md:scale-100`}>
                   <NavSubLi title={'Perros disponibles'} url={'/perros'} sublink />
                   <NavSubLi title={'Gatos disponibles'} url={'/gatos'} sublink />
