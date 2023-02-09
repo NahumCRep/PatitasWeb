@@ -11,9 +11,11 @@ import map from '../../assets/images/panama.svg';
 export const HomePage = () => {
   return (
     <Layout>
-      <header className="relative w-full h-[80vh] bg-plt-cream flex flex-col items-center justify-between overflow-hidden md:h-[calc(100vh-80px)]">
-        <div className="flex flex-col items-center gap-5 z-20 md:gap-7 md:mt-4">
-          <h1 className="w-full font-primary text-plt-dark text-6xl flex flex-col items-center mt-8 md:text-8xl md:gap-5 md:flex-row">
+      <header className="relative w-full h-[80vh] bg-plt-cream flex flex-col items-center justify-between 
+        overflow-hidden md:h-[calc(100vh-80px)]">
+        <div className="flex flex-col items-center gap-5 z-20 md:justify-center md:gap-7 md:mt-4">
+          <h1 className="w-full font-primary text-plt-dark text-6xl flex flex-col items-center 
+            mt-8 md:text-8xl md:gap-5 md:flex-row">
             <span>Perros</span>
             <span>y</span>
             <span>Gatos</span>
@@ -75,8 +77,8 @@ export const HomePage = () => {
 
 
       <section className="w-full h-auto mt-16 flex flex-col lg:flex-row">
-        <PawsContainer paw={'dog'} btnText="Perros" url={'/perros'} />
-        <PawsContainer paw={'cat'} btnText="Gatos" url={'/gatos'} />
+        <PawsContainer paw={'dog'} btnText="Perros Disponibles" url={'/perros'} />
+        <PawsContainer paw={'cat'} btnText="Gatos Disponibles" url={'/gatos'} />
       </section>
 
       <section className="w-full min-h-[550px] h-auto relative mt-16 px-4 overflow-hidden md:px-20">
@@ -91,7 +93,7 @@ export const HomePage = () => {
           <p className="z-10 font-primary text-plt-blue text-xl gap-2 md:text-2xl">
             Dale al botón y creemosla !!
           </p>
-          <Link to={'/profile'} className="box-border py-4 px-12 z-10 rounded-xl font-primary font-semibold tracking-wider bg-plt-blue text-plt-white border-b-8 border-plt-darkblue transition-all duration-200 hover:border-b-2 hover:translate-y-1">
+          <Link to={'/perfil/publicaciones'} className="box-border py-4 px-12 z-10 rounded-xl font-primary font-semibold tracking-wider bg-plt-blue text-plt-white border-b-8 border-plt-darkblue transition-all duration-200 hover:border-b-2 hover:translate-y-1">
             Crear Publicación
           </Link>
         </div>

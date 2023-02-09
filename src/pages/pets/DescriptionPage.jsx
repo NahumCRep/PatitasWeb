@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import { usePublicationStore } from '../../hooks'
 import { Layout } from '../../components/layouts'
 import { PageLoader } from '../../components/ui'
-import { AdditionalImages, PetInfoField } from '../../components/pets'
+import { AdditionalImages } from '../../components/pets'
 // ** Icons
 import { RiWhatsappFill, MdEmail } from '../../utils/reactIcons';
 
@@ -18,8 +18,6 @@ export const DescriptionPage = () => {
     if (!activePublication._id) {
         return <PageLoader />
     }
-
-
 
     return (
         <Layout>
@@ -103,10 +101,10 @@ export const DescriptionPage = () => {
                     activePublication.extra_images && activePublication.extra_images.length > 0 
                     ? (
                         <div className='mt-16'>
-                            <h2 className="text-xl font-semibold text-plt-dark text-center">
+                            <h2 className="font-primary text-3xl md:text-4xl text-plt-blue text-center 
+                            border-b-4 border-dashed border-plt-cream/40">
                                 Fotos Adicionales
                             </h2>
-                            <hr />
                             <AdditionalImages images={activePublication.extra_images} />
                         </div>
                     )
