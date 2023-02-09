@@ -13,24 +13,20 @@ export const PawsContainer = ({ paw, btnText, url}) => {
             bg-repeat-space md:h-[27rem]
         `}>
             <div className={`
-                w-1/2 h-2/3 md:h-1/2 px-4 flex flex-col gap-2 justify-between pb-6 md:pb-12 items-start
-                ${paw === 'dog' ? 'items-end' : ''}
+                w-1/2 h-2/3 lg:h-1/2 px-4 flex flex-col gap-2 justify-end 
+                pb-6  items-start ${paw === 'dog' ? 'items-end' : ''}
             `}>
-                <p className="font-secondary font-semibold text-plt-dark text-2xl md:text-4xl">
-                    Ver
-                </p>
                 <Link 
                     to={url} 
                     className={`
-                        py-4 px-12 rounded-xl font-primary font-semibold tracking-wider border-b-8 transition-all duration-200 hover:border-b-2
-                        ${paw === 'dog' ? 'bg-plt-cream text-plt-dark border-plt-darkercream':'bg-plt-blue border-plt-darkblue text-plt-white'} 
+                        py-4 px-4 rounded-xl font-primary font-semibold tracking-wider border-b-8 
+                        transition-all duration-200 hover:border-b-2 hover:translate-y-1
+                        ${paw === 'dog' ? 'bg-plt-cream text-plt-dark border-plt-darkercream'
+                        :'bg-plt-blue border-plt-darkblue text-plt-white'} 
                     `}
                 >
                     {btnText}
                 </Link>
-                <p className="font-secondary font-semibold text-plt-dark text-2xl md:text-4xl">
-                    Disponibles
-                </p>
             </div>
             <div className="w-1/2 h-full flex items-end justify-end">
                 {
