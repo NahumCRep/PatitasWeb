@@ -38,8 +38,9 @@ export const PetCard = ({ pet }) => {
   }, [pet.likes])
 
   return (
-    <div className={`h-60 relative font-secondary font-semibold bg-white shadow-lg rounded-t-md overflow-hidden transition-colors duration-500`}>
-
+    <div className={`h-52 relative font-secondary font-semibold bg-white shadow-lg 
+      rounded-t-md overflow-hidden transition-colors duration-500 md:h-60`}
+    >
       <figure className="w-full h-[80%] ">
         <Link to={`/${baseUrl}/informacion/${pet._id}`}>
           <img src={pet.image} alt="dog" className="w-full h-full rounded-t-md object-cover" />
@@ -62,14 +63,16 @@ export const PetCard = ({ pet }) => {
           </p>
         </div>
 
-        <button
-          onClick={handlePublicationLike} 
-          title={'agregar a favoritos'} 
-          className={`:transition-colors duration-200 lg:hover:text-slate-500
-                ${isLiked ? 'text-red-500':'text-slate-400'}`}
-        >
-          <AiFillHeart size={27} />
-        </button>
+        <div className='flex justify-center items-center'>
+          <button
+            onClick={handlePublicationLike} 
+            title={isLiked ? 'quitar de favoritos':'agregar a favoritos'} 
+            className={`transition-all duration-200 
+            ${isLiked ? 'animate-like text-red-500':'text-slate-200 lg:hover:text-slate-300'}`}
+          >
+            <AiFillHeart size={27} />
+          </button>
+        </div>
       </div>
     </div>
   )

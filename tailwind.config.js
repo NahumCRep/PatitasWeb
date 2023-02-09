@@ -49,6 +49,15 @@ module.exports = {
         // Simple 16 column grid
         '100x300': 'repeat(auto-fit,  minmax(100px, 1fr))',
       },
+      animation:{
+        'like': 'heart 0.2s linear'
+      },
+      keyframes: {
+        'heart': {
+          'from': { transform: 'scale(1)' },
+          'to':{ transform: 'scale(1.2)'}
+        }
+      }
     },
   },
   plugins: [],
