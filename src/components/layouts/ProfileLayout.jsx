@@ -24,7 +24,6 @@ export const ProfileLayout = ({ children, layoutTitle }) => {
         
       </button>
 
-
       <SideNav navOpen={isSideNavOpen} handleNav={handleNavOpen} />
 
       <div className="flex-grow h-auto min-h-screen md:ml-[18%] ">
@@ -33,11 +32,6 @@ export const ProfileLayout = ({ children, layoutTitle }) => {
             <h1 className="text-3xl font-semibold md:text-6xl">
               {layoutTitle}
             </h1>
-            <button className=" hidden text-white bg-plt-blue p-2 rounded-xl border-b-8 border-plt-darkblue
-                transition-all duration-150 hover:border-b-2 hover:translate-y-1 md:inline">
-              cerrar sesion
-            </button>
-
           </div>
         </div>
         <div className="h-auto p-4 md:p-9">
