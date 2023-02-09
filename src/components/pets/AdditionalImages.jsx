@@ -46,10 +46,9 @@ export const AdditionalImages = ({ images }) => {
                 images.map((image, index) => (
                     <figure 
                         key={image}
-                        className='relative border-[10px] border-white shadow-cust cursor-pointer'
+                        className='border-[10px] border-white shadow-cust cursor-pointer
+                        md:hover:scale-110 md:hover:rotate-3'
                     >
-                        <div className='absolute z-10 w-10 h-10 -top-4 left-1/2 -translate-x-1/2 bg-svg-pin 
-                            bg-no-repeat bg-contain'></div>
                         <img
                             src={image}
                             alt={`imagen adicional ${index} de la mascota`}
