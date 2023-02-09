@@ -6,7 +6,13 @@
 
 @layer components{
     .formField{
-        @apply w-full mt-1 p-2 border-2 border-slate-300 text-sm;
+        @apply w-full mt-1 p-2 border-[2px] rounded-md border-slate-200 text-sm
+                focus:outline-plt-cream;
+    }
+
+    .formPasswordField{
+        @apply w-full mt-1 py-2 pl-2 pr-8 border-[2px] rounded-md border-slate-200 text-sm
+                focus:outline-plt-cream;
     }
 
     .inputError{
