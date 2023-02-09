@@ -61,7 +61,7 @@ export const SideNav = ({ navOpen, handleNav }) => {
                         </SideNavLink>
                     </li>
                     <li>
-                        <SideNavLink url={'/'}>
+                        <SideNavLink url={'/perfil/configuracion'}>
                             <BsFillGearFill size={20} color="#FFC947" />
                             Configuracion
                         </SideNavLink>
