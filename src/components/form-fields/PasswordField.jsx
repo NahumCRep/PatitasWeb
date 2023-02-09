@@ -3,7 +3,7 @@ import { useField } from 'formik'
 import { FaEye, FaEyeSlash } from '../../utils/reactIcons'
 
 
-export const PasswordField = ({ label, ...props }) => {
+export const PasswordField = ({ label, className, ...props }) => {
     const [field, meta] = useField(props.name)
     const [showPassword, setShowPassword] = useState(false)
 
@@ -14,12 +14,12 @@ export const PasswordField = ({ label, ...props }) => {
 
     return (
         <div className="h-20">
-            <label htmlFor={props.name}>{label}</label>
+            <label className='text-sm' htmlFor={props.name}>{label}</label>
             <div className='relative'>
                 <input 
                     type={showPassword ? 'text':'password'} 
                     {...field} 
-                    className={`formField pr-8 ${meta.touched && meta.error ? 'inputError':''}`} 
+                    className={`${className} ${meta.touched && meta.error ? 'inputError':''}`} 
                 />
                 <button 
                     type='button'
