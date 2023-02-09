@@ -1,4 +1,4 @@
-import { FaPlus, FaTimes, FaUserCircle, FaDoorOpen } from 'react-icons/fa';
+import { FaPlus, FaTimes, FaUserCircle, FaDoorOpen, FaEye, FaEyeSlash } from 'react-icons/fa';
 import { BsFillPlusCircleFill, BsFillInfoCircleFill, BsThreeDotsVertical } from 'react-icons/bs'
 import { IoIosArrowForward, IoIosArrowBack } from 'react-icons/io';
 import { RiWhatsappFill, RiHomeHeartFill } from 'react-icons/ri';
@@ -11,7 +11,7 @@ import { TiWarning } from 'react-icons/ti';
 export { 
     AiOutlineHeart, AiFillHeart,
     BsFillPlusCircleFill, BsFillInfoCircleFill, BsThreeDotsVertical, 
-    FaPlus, FaTimes, FaUserCircle, FaDoorOpen,
+    FaPlus, FaTimes, FaUserCircle, FaDoorOpen, FaEye, FaEyeSlash,
     MdEmail, MdLocationOn, 
     RiWhatsappFill, RiHomeHeartFill,
     TbGenderMale, TbGenderFemale,
