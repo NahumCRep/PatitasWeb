@@ -13,7 +13,7 @@ export const Counter = ({type, amount}) => {
             </div>
             <div className="flex flex-col font-semibold">
                 <span className="text-xl text-plt-blue">Patitas</span>
-                <span className="text-2xl text-plt-dark">{type === 'available' ? 'Disponibles':'Adoptados'}</span>
+                <span className="text-2xl text-plt-dark">{type === 'available' ? 'Disponibles':'Adoptadas'}</span>
             </div>
         </div>
         <p className="text-black text-6xl md:text-7xl pl-1 font-secondary">{amount}</p>
