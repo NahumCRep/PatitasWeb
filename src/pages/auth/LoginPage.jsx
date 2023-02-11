@@ -5,13 +5,15 @@ import { useAuthStore } from '../../hooks';
 import { Link } from 'react-router-dom';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { AuthLayout } from '../../components/layouts';
+import { Loader } from '../../components/ui';
 
 export const LoginPage = () => {
   const { startLogin, errorMessage } = useAuthStore();
   
   const handleLogin = (data) => {
     const {email, password} = data;
-    startLogin({email, password});
+    const resp = startLogin({email, password});
+    return resp
   }
 
   return (
@@ -44,12 +46,11 @@ export const LoginPage = () => {
             return errors;
           }}
           onSubmit={(values, { setSubmitting, resetForm }) => {
-            handleLogin(values);
-            setTimeout(() => {
-              // alert(JSON.stringify(values, null, 2));
+            const resp = handleLogin(values);
+            resp.then(res => {
               setSubmitting(false);
               resetForm();
-            }, 400);
+            })
           }}
         >
           {({ errors, touched, isSubmitting }) => (
@@ -84,9 +85,14 @@ export const LoginPage = () => {
               <button 
                 type="submit" 
                 disabled={isSubmitting}
-                className="w-full h-14 mt-5 bg-plt-blue text-white transition-colors duration-500 hover:bg-plt-darkblue"
+                className="w-full h-12 rounded-md mt-5 bg-plt-blue text-white transition-colors 
+                  duration-500 hover:bg-plt-darkblue flex items-center justify-center"
               >
-                aceptar
+                {
+                  isSubmitting
+                    ? <Loader />
+                    : 'aceptar'
+                }
               </button>
             </Form>
           )}
