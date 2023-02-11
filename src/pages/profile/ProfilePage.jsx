@@ -10,7 +10,7 @@ export const ProfilePage = () => {
 
   useEffect(()=>{
     startGetPublicationsLikedByUser(user.uid)
-  },[user, publicationsData])
+  },[user.uid])
 
   return (
     <ProfileLayout layoutTitle={'Panel'}>
