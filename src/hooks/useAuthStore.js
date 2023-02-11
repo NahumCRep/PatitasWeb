@@ -11,17 +11,14 @@ export const useAuthStore = () => {
             const { data } = await patitasApi.post('/auth', {email, password});
             localStorage.setItem('token', data.token);
             localStorage.setItem('token-init-date', new Date().getTime());
-            dispatch(onLogin({uid: data.uid, name: data.name}));
+            dispatch(onLogin({uid: data.uid, name: data.name, email: data.email}));
+            return data
         } catch (error) {
             if(error.response.data.message){
                 dispatch(onLogout(error.response.data.message));
             } else if(error.response.data.errors) {
                 dispatch(onLogout('Error en los valores ingresados'));
             }
-
-            // setTimeout(() => {
-            //     dispatch(onClearErrorMessage());
-            // }, 10);
         }
     }
 
@@ -62,9 +59,27 @@ export const useAuthStore = () => {
             dispatch(onLogin({name: data.name, uid: data.uid}));
         
         } catch (error) {
-            console.log(error);
+            // console.log(error);
             localStorage.clear();
             dispatch(onLogout());
+        }
+    }
+
+    const startUpdateUser = async (userId, updateData) => {
+        try {
+            const { data } = await patitasApi.put(`/user/${userId}/update`, updateData);
+            console.log('update user', data)
+            if(!updateData.password && data.ok){
+                dispatch(onLogin({
+                    uid: userId, 
+                    name: updateData.name, 
+                    email: updateData.email
+                }));
+            }
+            
+            return data;
+        } catch (error) {
+            console.log(error);
         }
     }
 
@@ -75,6 +90,7 @@ export const useAuthStore = () => {
         startLogin,
         startLogout,
         startUserRegistration,
-        startCheckingToken
+        startCheckingToken,
+        startUpdateUser
     }
 }
