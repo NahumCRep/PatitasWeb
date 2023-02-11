@@ -26,7 +26,7 @@ export const ProfileLayout = ({ children, layoutTitle }) => {
 
       <SideNav navOpen={isSideNavOpen} handleNav={handleNavOpen} />
 
-      <div className="flex-grow h-auto min-h-screen md:ml-[18%] ">
+      <div className="flex-grow h-auto min-h-screen md:ml-[18%]">
         <div className="w-full h-32 p-4 bg-svg-bg-hd bg-no-repeat bg-cover">
           <div className="w-full h-full p-4 font-secondary flex items-center justify-between">
             <h1 className="text-3xl font-semibold md:text-6xl">
