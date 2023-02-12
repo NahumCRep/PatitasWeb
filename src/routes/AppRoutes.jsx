@@ -11,7 +11,6 @@ import { DogsRoutes, CatsRoutes } from './pets';
 
 
 export const AppRoutes = () => {
-    // const isLogged = 'authenticated'
     const { status, startCheckingToken } = useAuthStore();
 
     useEffect(() => {

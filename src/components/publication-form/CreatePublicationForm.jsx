@@ -18,10 +18,8 @@ export const CreatePublicationForm = () => {
         extraImages,
         activePublication, 
         startCreatePublication, 
-        // startClearPreviewImage 
     } = usePublicationStore();
 
-    console.log(activePublication);
     
     const handlePetState = () => { setIsDog(!isDog) }
 
@@ -76,7 +74,6 @@ export const CreatePublicationForm = () => {
             onSubmit={(values, { setSubmitting, resetForm }) => {
                 handleBeforeSubmit(values);
                 setTimeout(() => {
-                    // startClearPreviewImage();
                     setSubmitting(false);
                     resetForm();
                 }, 400);

@@ -55,7 +55,6 @@ export const usePublicationStore = () => {
 
     const startGetPublicationsLikedByUser = async (userId) => {
         const res = await patitasApi.get(`/publication/user/${userId}/likes`);
-        console.log(res)
         dispatch(onSetPublicationsData(res.data));
     }
 
