@@ -3,7 +3,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 // ** Hooks
 import { useAuthStore } from '../hooks';
 // ** Pages
-import { LoginPage, RegisterPage } from '../pages/auth';
+import { LoginPage, RegisterPage, ForgotPasswordPage, NewPasswordPage } from '../pages/auth';
 import { AboutPage, HomePage, NotFoundPage } from '../pages/publicPages';
 // ** Routes
 import { ProfileRoutes } from './profile';
@@ -38,6 +38,8 @@ export const AppRoutes = () => {
                             <Route path='login' element={<LoginPage />} />
                             <Route path='register' element={<RegisterPage />} />
                             <Route path='perfil/*' element={<Navigate to='/login' />} />
+                            <Route path='/forgot_password' element={<ForgotPasswordPage />}  />
+                            <Route path='/new_password' element={<NewPasswordPage />}  />
                         </>
                     )
             }

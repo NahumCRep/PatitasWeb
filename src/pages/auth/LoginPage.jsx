@@ -72,7 +72,7 @@ export const LoginPage = () => {
                     <input type="checkbox" name='rememberme' />
                     recordarme
                   </label>
-                  <Link to={"#"}>olvidaste tu contraseña ?</Link>
+                  <Link to={"/forgot_password"}>olvidaste tu contraseña ?</Link>
               </div>
               
               {
