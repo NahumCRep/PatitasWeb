@@ -36,12 +36,7 @@ export const SideNav = ({ navOpen, handleNav }) => {
                     </p>
                 </div>
 
-                {/* <SideNavLink url={'/'}>
-                    <TbArrowLeftBar size={20} />
-                    volver a inicio
-                </SideNavLink> */}
-
-                <ul className="mt-4">
+                <ul className="mt-4 px-2">
                     <li>
                         <SideNavLink url={'/'}>
                             <AiFillHome size={20} color="#FFC947" />
@@ -70,7 +65,7 @@ export const SideNav = ({ navOpen, handleNav }) => {
             </div>
 
             <button className="w-full h-14 rounded-xl flex flex-nowrap items-center gap-2 px-2 font-secondary font-medium
-             text-white text-xl whitespace-nowrap  transition-colors duration-500 hover:bg-plt-darkblue
+             text-white text-base whitespace-nowrap  transition-colors duration-500 hover:bg-plt-darkblue
              md:h-10 md:text-sm"
                 onClick={() => handleLogout()}
             >
