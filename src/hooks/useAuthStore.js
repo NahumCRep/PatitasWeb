@@ -1,5 +1,5 @@
 import {useDispatch, useSelector} from 'react-redux';
-import {onChecking, onLogin, onLogout, onClearErrorMessage} from '../store/auth';
+import {onLogin, onLogout, onClearErrorMessage} from '../store/auth';
 import patitasApi from '../api/patitasApi';
 
 export const useAuthStore = () => {
@@ -59,7 +59,7 @@ export const useAuthStore = () => {
             dispatch(onLogin({name: data.name, uid: data.uid}));
         
         } catch (error) {
-            // console.log(error);
+            console.log(error);
             localStorage.clear();
             dispatch(onLogout());
         }
@@ -68,7 +68,6 @@ export const useAuthStore = () => {
     const startUpdateUser = async (userId, updateData) => {
         try {
             const { data } = await patitasApi.put(`/user/${userId}/update`, updateData);
-            console.log('update user', data)
             if(!updateData.password && data.ok){
                 dispatch(onLogin({
                     uid: userId, 
@@ -83,6 +82,29 @@ export const useAuthStore = () => {
         }
     }
 
+    const startForgotPassword = async (email) => {
+        try {
+            const {data} = await patitasApi.post('/auth/forgot_password', {email})
+            console.log(data)
+            return data
+        } catch (error) {
+            console.log(error)            
+        }
+    }
+
+    const startResetPassword = async (resetPasswordData) => {
+        const {id, token, password} = resetPasswordData
+        try {
+            const { data } = await patitasApi.put(
+                `/auth/reset_password/${id}/${token}`, 
+                {password: password}
+            )
+            return data
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return {
         status,
         user,
@@ -91,6 +113,8 @@ export const useAuthStore = () => {
         startLogout,
         startUserRegistration,
         startCheckingToken,
-        startUpdateUser
+        startUpdateUser,
+        startForgotPassword,
+        startResetPassword 
     }
 }

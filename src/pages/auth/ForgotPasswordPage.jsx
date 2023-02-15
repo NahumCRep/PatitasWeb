@@ -1,11 +1,15 @@
 import React, { useState } from 'react'
+import { useAuthStore } from '../../hooks/useAuthStore'
 import { Formik, Form } from 'formik'
 import { InputField } from '../../components/form-fields'
+import { Loader } from '../../components/ui'
 import * as Yup from 'yup'
 
 export const ForgotPasswordPage = () => {
     const [isSended, setIsSended] = useState(false)
+    const [anyError, setAnyError] = useState({ error: true, message: '' })
     const [emailSended, setEmailSended] = useState('')
+    const { startForgotPassword } = useAuthStore()
 
     const validationFromSchema = Yup.object().shape({
         email: Yup.string()
@@ -14,13 +18,23 @@ export const ForgotPasswordPage = () => {
     })
 
     const sendEmail = (email) => {
-        console.log('sending',email)
+        const sended = startForgotPassword(email)
+        sended.then(res => {
+            if (res.ok) {
+                setAnyError({ error: false, message: '' })
+                setIsSended(true)
+            } else {
+                setAnyError({ error: true, message: res.message })
+            }
+        })
+
+        return sended
     }
 
     const handleFormSubmit = (email) => {
-        sendEmail(email)
         setEmailSended(email)
-        setIsSended(true)
+        const resp = sendEmail(email)
+        return resp
     }
 
     const resendEmail = () => {
@@ -31,6 +45,7 @@ export const ForgotPasswordPage = () => {
     const newEmail = () => {
         setEmailSended('')
         setIsSended(false)
+        setAnyError({ error: true, message: '' })
     }
 
     return (
@@ -39,18 +54,17 @@ export const ForgotPasswordPage = () => {
                 mt-8 rounded-md outline-dashed outline-2 outline-plt-cream/70 outline-offset-4
                 shadow-md'>
                 {
-                    !isSended
+                    !isSended && anyError.error
                         ? (
                             <Formik
                                 initialValues={{ email: '' }}
                                 validationSchema={validationFromSchema}
-                                onSubmit={({email}, { setSubmitting, resetForm }) => {
-                                    console.log(email)
-                                    handleFormSubmit(email)
-                                    setTimeout(() => {
+                                onSubmit={({ email }, { setSubmitting, resetForm }) => {
+                                    const resp = handleFormSubmit(email)
+                                    resp.then(res => {
                                         setSubmitting(false)
                                         resetForm()
-                                    },1000)
+                                    })
                                 }}
                             >
                                 {({ isSubmitting }) => (
@@ -63,14 +77,28 @@ export const ForgotPasswordPage = () => {
                                             name={'email'}
                                             type={'email'}
                                         />
-                                        <button
-                                            type='submit'
-                                            className='py-1 w-32 mt-4 bg-plt-cream text-black 
-                                        rounded-md float-right transition-colors 
-                                        duration-200 hover:bg-plt-darkcream'
-                                        >
-                                            enviar
-                                        </button>
+                                        <div className='flex justify-end'>
+                                            <button
+                                                type='submit'
+                                                disabled={isSubmitting}
+                                                className='py-1 w-32 mt-4 bg-plt-cream text-black 
+                                                    rounded-md transition-colors flex justify-center
+                                                    items-center duration-200 hover:bg-plt-darkcream'
+                                            >
+                                                {
+                                                    isSubmitting 
+                                                    ? <Loader />
+                                                    : "enviar"
+                                                }
+                                            </button>
+                                        </div>
+
+                                        {
+                                            anyError.message !== '' &&
+                                            <div className='mt-4 text-red-400 p-2'>
+                                                {anyError.message}
+                                            </div>
+                                        }
                                     </Form>
                                 )}
                             </Formik>
