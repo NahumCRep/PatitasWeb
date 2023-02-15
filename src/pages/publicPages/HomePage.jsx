@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Layout } from '../../components/layouts';
 import { Counter, PawsContainer } from '../../components/ui';
 // ** Images
-import dog from '../../assets/images/dog-head.png';
+import dog from '../../assets/images/dog-head.webp';
 import map from '../../assets/images/panama.svg';
 
 

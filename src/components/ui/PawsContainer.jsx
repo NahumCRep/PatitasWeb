@@ -1,8 +1,8 @@
 import React from 'react';
 
 // ** Images
-import dog from '../../assets/images/dog.png';
-import cat from '../../assets/images/cat.png';
+import dog from '../../assets/images/dog.webp';
+import cat from '../../assets/images/cat.webp';
 import { Link } from 'react-router-dom';
 
 export const PawsContainer = ({ paw, btnText, url}) => {
