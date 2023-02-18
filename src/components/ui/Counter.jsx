@@ -16,7 +16,13 @@ export const Counter = ({type, amount}) => {
                 <span className="text-2xl text-plt-dark">{type === 'available' ? 'Disponibles':'Adoptadas'}</span>
             </div>
         </div>
-        <p className="text-black text-6xl md:text-7xl pl-1 font-secondary">{amount}</p>
+        <p className="text-black text-6xl md:text-7xl pl-1 font-secondary">
+            {
+                amount > 100
+                ? '+100'
+                : amount
+            }
+        </p>
     </div>
   )
 }

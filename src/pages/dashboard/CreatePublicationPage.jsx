@@ -7,14 +7,17 @@ import { useAuthStore, usePublicationStore } from '../../hooks';
 import { ProfileLayout } from '../../components/layouts';
 import { initialValues } from '../../utils/formikValues';
 import { PageLoader, Loader } from '../../components/ui';
-import { ExtraImagesForm, PetProfilePhoto, SubForm } from '../../components/publication-form';
+import { ExtraImagesForm, PetProfilePhoto, SubForm } from '../../components/dashboard/publication';
 import { DeletePublicationForm, ChangeAdoption, AdditionalSection } from '../../components/dashboard/publication';
 
 export const CreatePublicationPage = () => {
     const { user } = useAuthStore();
     const [isDog, setIsDog] = useState(true);
     const [formInitialValues, setFormInitialValues] = useState(initialValues);
-    const { activePublication, startGetPublicationById, startCreatePublication,
+    const { 
+        activePublication, 
+        startGetPublicationById, 
+        startCreatePublication,
         startClearActivePublication
     } = usePublicationStore();
     

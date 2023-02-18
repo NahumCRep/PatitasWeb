@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useAuthStore } from '../../hooks'
 import Swal from 'sweetalert2'
 import { ProfileLayout } from '../../components/layouts'
-import { UserSection, PasswordSection } from '../../components/dashboard/configSections'
+import { UserSection, PasswordSection } from '../../components/dashboard/configuration'
 
 export const ConfigPage = () => {
     const { user, startUpdateUser } = useAuthStore()

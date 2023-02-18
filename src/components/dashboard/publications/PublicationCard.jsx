@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom' 
-import { RiHomeHeartFill } from '../../utils/reactIcons'
+import { RiHomeHeartFill } from '../../../utils/reactIcons'
 
 export const PublicationCard = ({ publication }) => {
   return (

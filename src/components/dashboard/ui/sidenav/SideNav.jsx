@@ -1,17 +1,21 @@
 import React from 'react';
 // ** Hooks
-import { useAuthStore } from '../../../hooks';
+import { useAuthStore } from '../../../../hooks';
 // ** Components
 import { SideNavLink } from './SideNavLink';
-import { Logo } from '../../ui';
+import { Logo } from '../../../ui';
 // ** Icons
-import { MdOutlineDashboard, MdLogout } from 'react-icons/md';
-import { BsFillFilePostFill, BsFillGearFill } from 'react-icons/bs';
-import { AiFillHome } from 'react-icons/ai';
+import {
+    MdOutlineDashboard,
+    MdLogout,
+    BsFillFilePostFill,
+    BsFillGearFill,
+    AiFillHome
+} from '../../../../utils/reactIcons';
 
-export const SideNav = ({ navOpen, handleNav }) => {
+export const SideNav = ({ navOpen }) => {
     const { user, startLogout } = useAuthStore();
-    
+
     const handleLogout = () => {
         startLogout();
     }
@@ -37,30 +41,22 @@ export const SideNav = ({ navOpen, handleNav }) => {
                 </div>
 
                 <ul className="mt-4 px-2">
-                    <li>
-                        <SideNavLink url={'/'}>
-                            <AiFillHome size={20} color="#FFC947" />
-                            Patitas
-                        </SideNavLink>
-                    </li>
-                    <li>
-                        <SideNavLink url={'/perfil'}>
-                            <MdOutlineDashboard size={20} color="#FFC947" />
-                            Panel
-                        </SideNavLink>
-                    </li>
-                    <li >
-                        <SideNavLink url={'/perfil/publicaciones'}>
-                            <BsFillFilePostFill size={20} color="#FFC947" />
-                            Publicaciones
-                        </SideNavLink>
-                    </li>
-                    <li>
-                        <SideNavLink url={'/perfil/configuracion'}>
-                            <BsFillGearFill size={20} color="#FFC947" />
-                            Configuracion
-                        </SideNavLink>
-                    </li>
+                    <SideNavLink url={'/'}>
+                        <AiFillHome size={20} color="#FFC947" />
+                        Patitas
+                    </SideNavLink>
+                    <SideNavLink url={'/perfil'}>
+                        <MdOutlineDashboard size={20} color="#FFC947" />
+                        Panel
+                    </SideNavLink>
+                    <SideNavLink url={'/perfil/publicaciones'}>
+                        <BsFillFilePostFill size={20} color="#FFC947" />
+                        Publicaciones
+                    </SideNavLink>
+                    <SideNavLink url={'/perfil/configuracion'}>
+                        <BsFillGearFill size={20} color="#FFC947" />
+                        Configuracion
+                    </SideNavLink>
                 </ul>
             </div>
 

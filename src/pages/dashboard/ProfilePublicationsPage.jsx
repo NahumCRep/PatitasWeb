@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { usePublicationStore, useAuthStore } from '../../hooks';
 
 import { ProfileLayout } from '../../components/layouts';
-import { PublicationCard } from '../../components/profile';
+import { PublicationCard } from '../../components/dashboard/publications';
 // icons
 import { FaPlus } from '../../utils/reactIcons'
 

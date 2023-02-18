@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 // ** Icons
 import { HiOutlineMenuAlt3, HiOutlineX } from 'react-icons/hi';
 // ** Images
-import { SideNav } from '../profile';
+import { SideNav } from '../dashboard/ui/sidenav';
 
 export const ProfileLayout = ({ children, layoutTitle }) => {
   const [isSideNavOpen, setIsSideNavOpen] = useState(false);

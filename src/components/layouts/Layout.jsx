@@ -11,7 +11,7 @@ export const Layout = ({ children }) => {
             </div>
             <footer className="w-full h-24 bg-plt-blue flex items-end justify-center p-2 font-secondary">
                 <p className='text-sm text-white'>
-                    &copy; patitas web todos los derechos reservados | {new Date().getFullYear()}
+                    &copy; patitas web | {new Date().getFullYear()}
                 </p>
             </footer>
         </main>

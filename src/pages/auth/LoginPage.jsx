@@ -67,11 +67,7 @@ export const LoginPage = () => {
                 <ErrorMessage name="password" component="div" className="text-red-500 text-xs" />
               </div>
 
-              <div className='flex items-center justify-between text-sm text-gray-400'>
-                  <label htmlFor="rememberme" className='flex items-center gap-2'>
-                    <input type="checkbox" name='rememberme' />
-                    recordarme
-                  </label>
+              <div className='flex items-center justify-end text-sm text-gray-400'>
                   <Link to={"/forgot_password"}>olvidaste tu contraseña ?</Link>
               </div>
               
@@ -90,7 +86,7 @@ export const LoginPage = () => {
               >
                 {
                   isSubmitting
-                    ? <Loader />
+                    ? <Loader color={'white'} />
                     : 'aceptar'
                 }
               </button>

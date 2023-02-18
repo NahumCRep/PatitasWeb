@@ -6,6 +6,7 @@ import { FaCat } from 'react-icons/fa';
 // ** Components
 import { PetsLayout } from '../../components/layouts';
 import { Pagination, PetCard, PetGrid } from '../../components/pets';
+import { Loader } from '../../components/ui';
 
 export const CatsPage = () => {
   const {province, page} = useParams();
@@ -55,11 +56,14 @@ export const CatsPage = () => {
       <section className='min-h-screen'>
         <PetGrid> 
           {
-            publicationsData.docs && publicationsData.docs.length > 0 
-              ? (publicationsData.docs.map((publication) => (
+            publicationsData.docs
+            ? (publicationsData.docs.length > 0 
+                ? (publicationsData.docs.map((publication) => (
                 <PetCard key={publication._id} pet={publication} />
                 )))
-              : <p className='w-full col-span-full text-slate-300 text-center'>No hay publicaciones</p>
+                : <p className='w-full col-span-full text-slate-300 text-center'>No hay publicaciones</p>
+              )
+            : <div className='col-span-full flex justify-center'><Loader /></div>
           }
         </PetGrid>
       </section>

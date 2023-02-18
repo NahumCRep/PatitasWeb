@@ -1,10 +1,9 @@
 import React from 'react';
-import { FaTimes } from '../../utils/reactIcons';
-import { usePublicationStore, useAuthStore } from '../../hooks';
+import { FaTimes } from '../../../utils/reactIcons';
+import { usePublicationStore } from '../../../hooks';
 
 export const ExtraImage = ({imageSrc}) => {
   const { startDeleteExtraImage } = usePublicationStore();
-  const { user } = useAuthStore();
 
   const handleDeleteExtraImage = () => {
     startDeleteExtraImage(imageSrc)

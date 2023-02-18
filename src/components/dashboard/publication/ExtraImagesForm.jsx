@@ -1,6 +1,6 @@
 import React from 'react';
-import { FaPlus } from '../../utils/reactIcons';
-import { usePublicationStore } from '../../hooks';
+import { FaPlus } from '../../../utils/reactIcons';
+import { usePublicationStore } from '../../../hooks';
 import { ExtraImage } from './ExtraImage';
 
 export const ExtraImagesForm = () => {

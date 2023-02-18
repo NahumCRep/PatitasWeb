@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { ErrorMessage, useFormikContext } from 'formik';
-import { MdEmail, RiWhatsappFill } from '../../utils/reactIcons';
-import { provinces, districts } from '../../utils/location';
+import { MdEmail, RiWhatsappFill } from '../../../utils/reactIcons';
+import { provinces, districts } from '../../../utils/location';
 
-import { InputField, RadioField, SelectField, ContactField } from '../form-fields'; 
+import { InputField, RadioField, SelectField, ContactField } from '../../form-fields'; 
 
 const ageOptions = ['anciano', 'adulto', 'joven', 'cachorro'];
 

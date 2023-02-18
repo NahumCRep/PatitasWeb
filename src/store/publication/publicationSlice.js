@@ -26,7 +26,8 @@ export const publicationSlice = createSlice({
     initialState: {
         activePublication: publicationInitialValues,
         publications: [],
-        publicationsData: {}
+        publicationsData: {},
+        counters:{}
     },
     reducers: {
         onSetPublications: (state, { payload }) => {
@@ -62,6 +63,9 @@ export const publicationSlice = createSlice({
                     }
                 }
             })
+        },
+        onSetCounters: (state, {payload}) => {
+            state.counters = payload
         }
     }
 })
@@ -74,5 +78,6 @@ export const {
     onSetPublicationExtraImages,
     onDeleteExtraImage,
     onSetPublicationsData,
-    onHandleLike
+    onHandleLike,
+    onSetCounters
 } = publicationSlice.actions;

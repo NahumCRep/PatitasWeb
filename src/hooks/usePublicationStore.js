@@ -9,14 +9,16 @@ import {
     onSetProfilePetPhoto,
     onSetPublicationExtraImages,
     onSetPublicationsData,
-    onHandleLike
-} from '../store/pet';
+    onHandleLike,
+    onSetCounters
+} from '../store/publication';
 
 export const usePublicationStore = () => {
     const { 
         publications, 
         activePublication, 
-        publicationsData 
+        publicationsData,
+        counters 
     } = useSelector(state => state.publication);
     const dispatch = useDispatch();
 
@@ -107,11 +109,18 @@ export const usePublicationStore = () => {
         }
     }
 
+    // counters
+    const startGetCounters = async () => {
+        const { data } = await patitasApi.get('/publication/counters/all')
+        dispatch(onSetCounters({available: data.available, adopted: data.adopted}))
+    }
+
     return {
         // Attributes
         publications,
         activePublication,
         publicationsData,
+        counters,
         // Methods
         startCreatePublication,
         startDeletePublication,
@@ -123,6 +132,7 @@ export const usePublicationStore = () => {
         startDeleteExtraImage,
         startPreviewImgFile,
         startReadAllFiles,
-        startHandleLike
+        startHandleLike,
+        startGetCounters
     }
 }

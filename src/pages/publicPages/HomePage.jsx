@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+// ** Hook
+import { usePublicationStore } from '../../hooks';
 // ** Components
 import { Link } from 'react-router-dom';
 import { Layout } from '../../components/layouts';
@@ -9,6 +11,11 @@ import map from '../../assets/images/panama.svg';
 
 
 export const HomePage = () => {
+  const {counters, startGetCounters} = usePublicationStore()
+
+  useEffect(() => {
+    startGetCounters()
+  },[])
   return (
     <Layout>
       <header className="relative w-full h-[80vh] bg-plt-cream flex flex-col items-center justify-between 
@@ -50,8 +57,8 @@ export const HomePage = () => {
         <div className="w-4/5 h-auto p-6 bg-plt-white shadow-2xl m-auto -translate-y-8 rounded-xl flex flex-col justify-center items-center gap-8
               md:flex-row md:w-[60%] md:p-16 lg:w-1/2"
         >
-          <Counter type={'available'} amount={30} />
-          <Counter type={'adopted'} amount={10} />
+          <Counter type={'available'} amount={counters.available} />
+          <Counter type={'adopted'} amount={counters.adopted} />
         </div>
       </div>
 
@@ -64,11 +71,14 @@ export const HomePage = () => {
           <h2 className="font-primary text-plt-darkcream text-4xl md:text-6xl drop-shadow-sm">
             Adopta !!
           </h2>
-          <p className="z-10 font-secondary text-plt-dark text-base md:text-xl">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque scelerisque maximus
-            mattis. Lorem ipsum dolor sit amet, consect adipiscing elit mattis.
+          <p className="z-10 font-secondary text-plt-dark text-base md:text-lg">
+            Si te encuentras en Panamá y te encantan los perros o los gatos y estás buscando 
+            incorporar uno o más a la familia, aquí pondrás encontrar diversos perros y gatos esperando 
+            por ti para darles un nuevo hogar. 
           </p>
-          <p className="z-10 font-primary text-plt-blue text-xl md:text-2xl">Estas interesado en adoptar ?</p>
+          <p className="z-10 font-primary text-plt-blue text-xl md:text-2xl">
+            Estas interesado en adoptar ?
+          </p>
         </div>
         <div className="w-full lg:w-1/2 flex justify-center">
           <img src={map} alt="panama map" />
@@ -84,10 +94,10 @@ export const HomePage = () => {
       <section className="w-full min-h-[550px] h-auto relative mt-16 px-4 overflow-hidden md:px-20">
         <div className="w-full h-fit mt-[10%] flex flex-col justify-between items-start gap-4 z-10 md:w-2/3">
           <h2 className="font-primary text-plt-darkcream text-4xl z-10 md:text-6xl drop-shadow-sm">Publica !!</h2>
-          <p className="z-10 font-secondary text-plt-dark text-base md:text-xl">
+          <p className="z-10 font-secondary text-plt-dark text-base md:text-lg">
             Si tienes un perro o un gato que necesita un hogar, este es un sitio donde lo puedes dar a conocer creando una publicación.
           </p>
-          <p className="z-10 font-secondary text-plt-dark text-base md:text-xl">
+          <p className="z-10 font-secondary text-plt-dark text-base md:text-lg">
             Quieres hacerlo ? entonces...
           </p>
           <p className="z-10 font-primary text-plt-blue text-xl gap-2 md:text-2xl">

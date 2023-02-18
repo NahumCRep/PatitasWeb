@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { NotFoundPage } from '../../pages/publicPages';
-import { ProfilePage, ProfilePublicationsPage, CreatePublicationPage, ConfigPage } from '../../pages/profile';
+import { ProfilePage, ProfilePublicationsPage, CreatePublicationPage, ConfigPage } from '../../pages/dashboard';
 
 export const ProfileRoutes = () => {
     return (
