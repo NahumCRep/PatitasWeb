@@ -1,7 +1,7 @@
 import React from 'react'
 import { Formik, Form } from 'formik'
 import * as Yup from "yup";
-import { InputField, PasswordField } from '../../form-fields';
+import { PasswordField } from '../../form-fields';
 import { Loader } from '../../ui';
 
 export const PasswordSection = ({ formValues, handleSubmit }) => {

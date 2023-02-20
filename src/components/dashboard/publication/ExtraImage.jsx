@@ -20,7 +20,7 @@ export const ExtraImage = ({imageSrc}) => {
           > 
             <FaTimes className='text-slate-200' size={20} /> 
           </button>
-          <img src={imageSrc} className='w-full h-full object-cover' />
+          <img src={imageSrc} className='w-full h-full object-cover' alt="imagen extra de la mascota en adopcion" />
     </div>
   )
 }

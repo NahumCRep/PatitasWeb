@@ -5,7 +5,7 @@ import { usePublicationStore, useAuthStore } from '../../hooks';
 // ** Icons
 import { 
   TbGenderMale, TbGenderFemale, 
-  AiOutlineHeart, AiFillHeart, 
+  AiFillHeart, 
   MdLocationOn 
 } from '../../utils/reactIcons'
 

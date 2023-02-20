@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { FaTimes, IoIosArrowBack, IoIosArrowForward } from '../../utils/reactIcons'
 
 export const ModalSlider = ({
