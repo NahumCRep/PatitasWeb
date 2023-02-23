@@ -1,1 +1,1 @@
-export const BASE_URL = 'https://patitas-back-end.vercel.app/api';
+export const BASE_URL = 'https://patitasapi.onrender.com';
