@@ -1,1 +1,1 @@
-export const BASE_URL = 'https://patitasapi.onrender.com';
+export const BASE_URL = 'https://patitasapi.onrender.com/api';
